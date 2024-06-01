@@ -10,6 +10,8 @@ class Deadline extends Model
 {
     use HasFactory;
 
+    protected $table = 'deadlines';
+
     public function expense(): HasMany
     {
         return $this->hasMany(Expense::class);

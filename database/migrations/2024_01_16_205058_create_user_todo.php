@@ -11,27 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('incomings', function (Blueprint $table) {
+        Schema::create('user_todo', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->unsignedBigInteger('incoming_category_id');
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->string('description')->nullable();
+            $table->date('date');
             $table->float('amount');
+            $table->boolean('isDone');
 
-            $table->foreign('incoming_category_id')
-                ->references('id')
-                ->on('incoming_categories')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
         });
     }
 
@@ -40,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('incomings');
+        Schema::dropIfExists('user_todo');
     }
 };

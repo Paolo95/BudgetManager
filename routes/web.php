@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\UserToDoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,7 @@ use App\Http\Controllers\BudgetController;
 |
 */
 
-Route::get('/', [BudgetController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
@@ -27,4 +29,10 @@ Route::post('/users', [UserController::class, 'store']);
 
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
-Route::get('/dashboard', [BudgetController::class, 'dashboard'])->middleware('auth');
+Route::get('/dashboard/home', [DashboardController::class, 'dashboard'])->middleware('auth');
+
+Route::get('/dashboard/new_expense', [DashboardController::class, 'insertExpense'])->middleware('auth');
+
+Route::get('/dashboard/new_incoming', [DashboardController::class, 'insertIncoming'])->middleware('auth');
+
+Route::post('/new_expense', [ExpenseController::class, 'createExpense'])->middleware('auth');

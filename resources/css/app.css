@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --main-bg-color:        #06283D;
+    --main-bg-light-color:  #1363DF;
+    --main-blue:            #47B5FF;
+    --main-very-light-blue: #DFF6FF;
+    --light-grey:           #eeeeee;   
+  }
+
+.positive{
+    color: lightgreen;
+}
+
+.negative{
+    color: lightcoral;
+}
+
+.bold{
+    font-weight: 700;
+}

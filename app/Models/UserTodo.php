@@ -6,26 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Expense extends Model
+class UserTodo extends Model
 {
     use HasFactory;
 
-    protected $table = 'expenses';
+    protected $table = 'user_todo';
 
     public $timestamps = false;
-
-    public function deadline(): BelongsTo
-    {
-        return $this->belongsTo(Deadline::class);
-    }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function sumOfExpenses(): float
-    {
-        return $this->where('user_id', auth()->id())->sum('amount');
     }
 }

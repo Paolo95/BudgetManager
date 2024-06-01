@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Expense::class);
     }
+
+    public function user_todo(): HasMany
+    {
+        return $this->hasMany(UserTodo::class);
+    }
 }

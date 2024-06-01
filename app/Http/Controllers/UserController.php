@@ -55,7 +55,7 @@ class UserController extends Controller
         if(auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            return redirect('/dashboard');
+            return redirect('/dashboard/home');
         }
 
         return back()->withErrors(['email' => 'Credenziali non valide'])->onlyInput('email');

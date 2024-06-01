@@ -1,0 +1,246 @@
+.dashboard-div{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.dashboard-content{
+    border-radius: 5px;
+    width: 100%;
+    background-color: var(--light-grey);
+    padding: 0 10px 0 10px;
+}
+
+.dashboard-content .dashboard-title{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.dashboard-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.dashboard-header button{
+   background-color: var(--main-blue);
+   color: white;
+   border-radius: 5px;
+   width: 140px;
+   height: 40px;
+   font-weight: 600;
+}
+
+.dashboard-resumeTab-div{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.dashboard-content .dashboard-tabs{
+    display: flex;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    width: 100%;
+}
+
+.dashboard-content .dashboard-tabs .dash-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+}
+
+.dashboard-content .dashboard-tabs .dash-table table{
+    width: 100%;
+    height: 100%;
+}
+
+
+.dashboard-content .dashboard-tabs .dash-table td,
+.dashboard-content .dashboard-tabs .dash-table th
+{
+   text-align: right;
+}
+
+.dashboard-content .dashboard-tabs .summary-tab{
+    display: flex;
+    width: 550px;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.dashboard-content .dashboard-graphs{
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-content .dashboard-graphs .lineChart-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items:center; 
+    height: 100%;
+}
+
+.dashboard-content .dashboard-tabs .incomings-tab{
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.dashboard-content .dashboard-tabs .incomings-tab h1{
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--main-bg-color);
+}
+
+.dashboard-content .dashboard-tabs .incomings-tab p{
+    font-weight: 800;
+    font-size: 30px;
+    color: lightskyblue;
+}
+
+.dashboard-content .dashboard-tabs .expenses-tab{
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.dashboard-content .dashboard-tabs .expenses-tab h1{
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--main-bg-color);
+}
+
+.dashboard-content .dashboard-tabs .expenses-tab p{
+    font-weight: 800;
+    font-size: 30px;
+    color: lightcoral;
+}
+
+.dashboard-content .dashboard-tabs .balance-tab{
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.dashboard-content .dashboard-tabs .balance-tab h1{
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--main-bg-color);
+}
+
+.dashboard-content .dashboard-tabs .balance-tab p{
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.dashboard-content .dashboard-tabs .todo-tab{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.dashboard-content .dashboard-tabs .todo-tab .todo-subtab {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    height: 100px;
+}
+
+.dashboard-content .dashboard-tabs .todo-tab .todo-subtab::-webkit-scrollbar {
+    display: none; 
+}
+
+.dashboard-content .dashboard-tabs .todo-tab .todo-subtab .todo-div{
+    width: 100%;
+    display: flex;
+
+}
+
+.todo-div p {
+    flex: 1;
+    margin: 0;
+    padding-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dashboard-content .dashboard-tabs .todo-tab .todo-subtab .todo-div input{
+    width: 20px;
+    height: 20px;
+}
+
+.dashboard-resumeTab-div .dashboard-tabs .dashboard-table{
+    width: 100%;
+}
+
+.dashboard-resumeTab-div .dashboard-tabs .dashboard-table td{
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dashboard-resumeTab-div .dashboard-tabs .dashboard-table .expanseTableStyle{
+   background-color: lightcoral;
+   border-radius: 5px;
+   width: 50px;
+   color: #fff;
+   font-weight: 500;
+}
+
+.dashboard-resumeTab-div .dashboard-tabs .dashboard-table .incomingTableStyle{
+    background-color: lightgreen;
+    border-radius: 5px;
+    width: 50px;
+    color: #fff;
+    font-weight: 500;
+ }
+
+
+.circle-button {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px; 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%;
+    background-color: green;
+    color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); 
+    z-index: 9999;
+}
+
+
+.circle-button i {
+    font-size: 24px;
+}

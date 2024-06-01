@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
+            $table->date('date');
+            $table->unsignedBigInteger('expense_category_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('deadline_id')->nullable();
             $table->string('title');
             $table->string('description')->nullable();
             $table->float('amount');
 
-            $table->foreign('category_id')
+            $table->foreign('expense_category_id')
                 ->references('id')
-                ->on('categories')
+                ->on('expense_categories')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             
@@ -38,7 +39,6 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->timestamps();
         });
     }
 
