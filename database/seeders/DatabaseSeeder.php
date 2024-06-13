@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\CreditDebit;
 use App\Models\User;
 use App\Models\IncomingCategory;
 use App\Models\Expense;
@@ -68,6 +69,22 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
+            'date' => '2024-06-05',
+            'expense_category_id' => 1,
+            'user_id' => 1,
+            'title'=> 'Bollo',
+            'amount' => 23.90,
+        ]);
+
+        Expense::create([
+            'date' => '2024-06-25',
+            'expense_category_id' => 1,
+            'user_id' => 1,
+            'title'=> 'Bollo',
+            'amount' => 3.90,
+        ]);
+
+        Expense::create([
             'date' => '2024-06-16',
             'expense_category_id' => 2,
             'user_id' => 1,
@@ -121,6 +138,14 @@ class DatabaseSeeder extends Seeder
             'date' => '2024-06-20',
             'amount' => 20.45,
             'isDone' => false,
+        ]);
+
+        CreditDebit::create([
+            'user_id' => 1,
+            'date' => '2024-06-20',
+            'amount' => 20.45,
+            'type' => 'Credito',
+            'description' => 'Soldi DK'
         ]);
         
     }

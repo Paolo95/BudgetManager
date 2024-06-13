@@ -21,3 +21,11 @@
 .bold{
     font-weight: 700;
 }
+
+.margin{
+    margin: 10px;
+}
+
+.center{
+    text-align: center;
+}

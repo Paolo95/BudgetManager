@@ -154,6 +154,36 @@ class ExpenseController extends Controller
         return $result;
     }
 
+    public function usrTotExpBySubType()
+    {
+        
+        $usrTotExpBySubType = Expense::select('subtype', DB::raw('SUM(amount) as total_amount'))
+                                    ->where('user_id', auth()->id())
+                                    ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
+                                    ->whereMonth('expenses.date', (int) now()->format('m'))
+                                    ->groupBy('subtype')
+                                    ->orderBy('total_amount', 'desc')
+                                    ->get();
+     
+       
+        $expanseSubTypes = [];
+        $expansesAmounts = [];
+
+     
+        foreach ($usrTotExpBySubType as $item) {
+            $expanseSubTypes[] = $item->subtype;
+            $expansesAmounts[] = $item->total_amount;
+        }
+
+        $result = [
+            'subtype' => $expanseSubTypes,
+            'total_amount' => $expansesAmounts,
+        ];
+
+ 
+        return $result;
+    }
+
 
 
 }

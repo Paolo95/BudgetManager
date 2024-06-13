@@ -42,6 +42,14 @@
     justify-content: center;
 }
 
+.dashboard-resumeTab-div-fixedHeight{
+    width: 100%;
+
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
 .dashboard-content .dashboard-tabs{
     display: flex;
     padding: 20px;
@@ -60,14 +68,6 @@
 
 .dashboard-content .dashboard-tabs .dash-table table{
     width: 100%;
-    height: 100%;
-}
-
-
-.dashboard-content .dashboard-tabs .dash-table td,
-.dashboard-content .dashboard-tabs .dash-table th
-{
-   text-align: right;
 }
 
 .dashboard-content .dashboard-tabs .summary-tab{
@@ -96,6 +96,7 @@
     justify-content: center; 
     align-items:center; 
     height: 100%;
+    width: 100%;
 }
 
 .dashboard-content .dashboard-tabs .incomings-tab{
@@ -161,7 +162,7 @@
 .dashboard-content .dashboard-tabs .todo-tab{
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 100%;
 }
 
 .dashboard-content .dashboard-tabs .todo-tab .todo-subtab {
@@ -170,6 +171,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     height: 100px;
+    width: 100%;
 }
 
 .dashboard-content .dashboard-tabs .todo-tab .todo-subtab::-webkit-scrollbar {
@@ -177,15 +179,29 @@
 }
 
 .dashboard-content .dashboard-tabs .todo-tab .todo-subtab .todo-div{
-    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
 
 }
+
+.todo-details{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-amount {
+    font-weight: bold; 
+    text-align: right;
+    padding-right: 10px;
+}
+
 
 .todo-div p {
     flex: 1;
     margin: 0;
-    padding-right: 10px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -198,16 +214,73 @@
 
 .dashboard-resumeTab-div .dashboard-tabs .dashboard-table{
     width: 100%;
+    height: 200px;
 }
 
-.dashboard-resumeTab-div .dashboard-tabs .dashboard-table td{
+.dashboard-resumeTab-div .dashboard-tabs .dashboard-table2{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    text-align: left;
+}
+
+.dashboard-tablediv {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.dashboard-table2{
+    width: 100%;
+}
+
+.dashboard-table2 th, .dashboard-table2 td,
+.dashboard-table th, .dashboard-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.dashboard-table2 th,
+.dashboard-table th {
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9;
+    z-index: 1; 
+}
+
+.dashboard-table2 tr:nth-child(even),
+.dashboard-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.dashboard-table2 tr:hover,
+.dashboard-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.dashboard-table2 th,
+.dashboard-table th {
+    background-color: var(--main-bg-color);
+    color: white;
+}
+
+.dashboard-table2 td,
+.dashboard-table td {
+    color: #555;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.dashboard-resumeTab-div .dashboard-tabs .dashboard-table .expanseTableStyle{
+.dashboard-resumeTab-div .dashboard-tabs .dashboard-tablediv{
+    width: 100%;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.tableDataNegativeStyle{
    background-color: lightcoral;
    border-radius: 5px;
    width: 50px;
@@ -215,32 +288,144 @@
    font-weight: 500;
 }
 
-.dashboard-resumeTab-div .dashboard-tabs .dashboard-table .incomingTableStyle{
+.tableDataPositiveStyle{
     background-color: lightgreen;
     border-radius: 5px;
     width: 50px;
     color: #fff;
     font-weight: 500;
- }
-
+}
 
 .circle-button {
     position: fixed;
-    bottom: 20px; 
-    right: 20px; 
-    width: 50px; 
-    height: 50px; 
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background-color: green;
-    color: white; 
+    background-color: blue;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     z-index: 9999;
+    transition: all 0.3s ease;
 }
-
 
 .circle-button i {
     font-size: 24px;
 }
+
+.new-button {
+    opacity: 0;
+    visibility: hidden;
+    bottom: 20px; 
+    right: 20px;
+    background-color: green;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.remove-button {
+    opacity: 0;
+    visibility: hidden;
+    bottom: 20px; 
+    right: 20px;
+    background-color: red;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.show-buttons .new-button,
+.show-buttons .remove-button {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#new_expense-button {
+    bottom: 80px;
+}
+
+#new_incoming-button {
+    bottom: 140px; 
+}
+
+#remove_expense-button {
+    bottom: 200px;
+}
+
+#remove_incoming-button {
+    bottom: 260px;
+}
+
+.new-button::before,
+.remove-button::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 70px;
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 10000;
+}
+
+.new-button:hover::before,
+.remove-button:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Switch style */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  .switch input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  .switch input:checked + .slider:before {
+    transform: translateX(14px);
+  }
+  

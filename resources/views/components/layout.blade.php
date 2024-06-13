@@ -14,7 +14,8 @@
   @vite('resources/css/navbar.css')
 
   @vite('resources/js/app.js')
-  @vite('resources/js/todoUpdater.js')
+  @vite('resources/js/dashboard/todoUpdater.js')
+  @vite('resources/js/dashboard/dashBottons.js')
   
   <link rel="icon" href="images/favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"

@@ -28,6 +28,8 @@ class DashboardController extends Controller
 
         $usrTotExpByType = $expenseController->usrTotExpByType();
 
+        $usrTotExpBySubType = $expenseController->usrTotExpBySubType();
+
         $incomingExpenseController = new IncomingExpenseController();
         $incomingExpenseUnion = $incomingExpenseController->incomingExpenseUnion();
 
@@ -35,6 +37,9 @@ class DashboardController extends Controller
         $userToDo = $userToDoController->getUserToDo();
         
         $currentMounth = ucfirst(Carbon::now()->locale('it_IT')->translatedFormat('F'));
+
+        $creditDebitController = new CreditDebitController();
+        $userCreditDebitOnLastMonth = $creditDebitController->userCreditDebitOnLastMonth();
      
         return view('pages.dashboard', 
         [
@@ -46,7 +51,9 @@ class DashboardController extends Controller
             'usrExpPrimaryCategoryLastMounthPercLists'                  => $usrExpPrimaryCategoryLastMounthPercLists,
             'usrExpSecondaryCategoryLastMounthPercLists'                => $usrExpSecondaryCategoryLastMounthPercLists,
             'usrExpLastMounthCumulative'                                => $usrExpLastMounthCumulative,
-            'usrTotExpByType'                                           => $usrTotExpByType
+            'usrTotExpByType'                                           => $usrTotExpByType,
+            'usrTotExpBySubType'                                        => $usrTotExpBySubType,
+            'userCreditDebitOnLastMonth'                                => $userCreditDebitOnLastMonth
         ]);
     }
 

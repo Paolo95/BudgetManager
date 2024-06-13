@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserTodo::class);
     }
+
+    public function creditDebit(): HasMany
+    {
+        return $this->hasMany(CreditDebit::class);
+    }
 }
