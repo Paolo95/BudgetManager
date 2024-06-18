@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('deadlines', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->date('date');
             $table->string('title');
             $table->string('description')->nullable();
-            $table->date('deadline_date');
-            $table->unsignedTinyInteger('deadline_installments')->nullable();
-            $table->unsignedTinyInteger('installments_left')->nullable();
             $table->float('amount');
-            $table->float('amount_saved')->nullable();
-            $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

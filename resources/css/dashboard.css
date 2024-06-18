@@ -24,6 +24,11 @@
     justify-content: space-between;
     align-items: center;
     gap: 30px;
+    width: 100%;
+}
+
+.dashboard-header a {
+    margin-left: auto; 
 }
 
 .dashboard-header button{
@@ -52,7 +57,7 @@
 
 .dashboard-content .dashboard-tabs{
     display: flex;
-    padding: 20px;
+    padding: 15px;
     border-radius: 5px;
     background-color: white;
     width: 100%;

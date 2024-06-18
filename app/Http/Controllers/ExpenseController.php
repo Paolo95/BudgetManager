@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Expense;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use DateTime;
 
 class ExpenseController extends Controller
@@ -184,6 +185,41 @@ class ExpenseController extends Controller
         return $result;
     }
 
+    public function newExpense(Request $request)
+    {
+      
+        // Validate the request data
+        $validatedData = $request->validate([
+            'date' => 'required|date',
+            'type' => 'required',
+            'subtype' => 'required',
+            'deadline_id' => 'nullable|integer',
+            'title' => 'required|max:255',
+            'description' => 'nullable|max:255',
+            'amount' => 'required|numeric|min:0',
+        ]);
+        
+        $expenseCategoryController = new ExpenseCategoryController();
+        $expenseCategoryID = $expenseCategoryController->findExpenseCategoryID($validatedData['type'], $validatedData['subtype']);
+    
+        // Create a new Expense instance
+        $expense = new Expense();
+        $expense->date = $validatedData['date'];
+        $expense->expense_category_id = $expenseCategoryID;
+        $expense->user_id = auth()->id();
+        $expense->deadline_id = $validatedData['deadline_id'];
+        $expense->title = $validatedData['title'];
+        $expense->description = $validatedData['description'];
+        $expense->amount = $validatedData['amount'];
+        
+        
+       
+        // Save the expense
+        $expense->save();
+
+        // Redirect or return a response as needed
+        return redirect()->back()->with('message', 'Spesa inserita correttamente!');
+    }
 
 
 }

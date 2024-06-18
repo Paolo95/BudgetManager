@@ -23,9 +23,4 @@ class Expense extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function sumOfExpenses(): float
-    {
-        return $this->where('user_id', auth()->id())->sum('amount');
-    }
 }

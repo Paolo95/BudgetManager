@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\DeadlineController;
+use App\Http\Controllers\ExpenseCategoryController;
+use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserToDoController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,5 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['web'])->group (function () {
     Route::post('/updateToDo/{id}', [UserToDoController::class, 'updateToDo']);
+    Route::get('/expenses/getSubCategories/{categoria}', [ExpenseCategoryController::class, 'expensesListByCategory']);
+    Route::post('/expenses/newExpense', [ExpenseController::class, 'newExpense']);
+    Route::get('/deadlines/userDeadlines', [DeadlineController::class, 'userDeadlines']);
 });
+
+
+
 

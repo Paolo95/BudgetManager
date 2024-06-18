@@ -1,4 +1,4 @@
-.sidebar{
+.sidebar {
     border-radius: 5px;
     cursor: pointer;
     top: 70px;
@@ -7,12 +7,39 @@
     height: 100%;
 }
 
-.sidebar-navbar-div:hover{
+.sidebar-navbar-div:hover {
     color: #03a1fc;
     font-weight: 600;
 }
 
-.sidebar .active{
+.sidebar .menu-item .active div{
     color: #03a1fc;
     font-weight: 600;
+}
+
+.submenu .active{
+    color: #03a1fc;
+    font-weight: 600;
+}
+
+
+.submenu {
+    display: none;
+    padding-left: 20px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+}
+
+.submenu .block {
+    padding: 0.5rem 1rem;
+}
+
+.submenu .block:hover {
+    color: #03a1fc;
+    font-weight: 600;
+}
+
+.menu-item.selected .submenu {
+    display: block;
 }

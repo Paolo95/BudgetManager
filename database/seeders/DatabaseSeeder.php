@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\CreditDebit;
+use App\Models\Deadline;
 use App\Models\User;
 use App\Models\IncomingCategory;
 use App\Models\Expense;
@@ -146,6 +147,14 @@ class DatabaseSeeder extends Seeder
             'amount' => 20.45,
             'type' => 'Credito',
             'description' => 'Soldi DK'
+        ]);
+
+        Deadline::create([
+            'user_id' => 1,
+            'date' => '2024-06-20',
+            'title' => 'Bollo',            
+            'description' => 'Soldi DK',
+            'amount' => 20.45,
         ]);
         
     }

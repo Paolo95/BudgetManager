@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(CreditDebit::class);
     }
+
+    public function deadlines(): HasMany
+    {
+        return $this->hasMany(Deadline::class);
+    }
 }

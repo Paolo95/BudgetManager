@@ -1,0 +1,57 @@
+.new_expense-div {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new_expense-div h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.new_expense-div form {
+    display: grid;
+    gap: 15px;
+}
+
+.new_expense-div label {
+    font-weight: bold;
+}
+
+.new_expense-div input[type="date"],
+.new_expense-div input[type="text"],
+.new_expense-div input[type="number"],
+.new_expense-div textarea,
+.new_expense-div select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.new_expense-div select {
+    appearance: none;
+}
+
+.new_expense-div button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--main-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.new_expense-div button[type="submit"]:hover {
+    background-color: var(--main-bg-light-color);
+}

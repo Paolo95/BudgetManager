@@ -58,7 +58,7 @@ class DashboardController extends Controller
     }
 
     public function insertExpense() {
-
+        
         return view('pages.new_expense');
     }
 

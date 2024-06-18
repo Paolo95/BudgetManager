@@ -31,8 +31,10 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 Route::get('/dashboard/home', [DashboardController::class, 'dashboard'])->middleware('auth');
 
-Route::get('/dashboard/new_expense', [DashboardController::class, 'insertExpense'])->middleware('auth');
+Route::get('/dashboard/expenses/new_expense', [DashboardController::class, 'insertExpense'])->middleware('auth');
 
-Route::get('/dashboard/new_incoming', [DashboardController::class, 'insertIncoming'])->middleware('auth');
+Route::get('/dashboard/incomings/new_incoming', [DashboardController::class, 'insertIncoming'])->middleware('auth');
 
 Route::post('/new_expense', [ExpenseController::class, 'createExpense'])->middleware('auth');
+
+Route::redirect('/dashboard', '/dashboard/home');
