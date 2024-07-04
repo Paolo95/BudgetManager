@@ -35,13 +35,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard/edit_expense" class="block py-2 px-4 {{ request()->is('dashboard/expenses/edit_expense') ? 'active' : '' }}">
+                            <a href="/dashboard/expenses/edit_expense" class="block py-2 px-4 {{ request()->is('dashboard/expenses/edit_expense') ? 'active' : '' }}">
                                 Modifica Spesa
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/dashboard/remove_expense" class="block py-2 px-4 {{ request()->is('dashboard/expenses/remove_expense') ? 'active' : '' }}">
-                                Elimina spesa
                             </a>
                         </li>
                     </ul>
@@ -157,11 +152,6 @@
                         <li>
                             <a href="/dashboard/new_expense/date" class="block py-2 px-4">
                                 Modifica Spesa
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/dashboard/new_expense/date" class="block py-2 px-4">
-                                Elimina Spesa
                             </a>
                         </li>
                     </ul>

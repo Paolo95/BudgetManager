@@ -12,12 +12,15 @@
   @vite('resources/css/home.css')
   @vite('resources/css/dashboard.css')
   @vite('resources/css/navbar.css')
-  @vite('resources/css/new-expense.css')
+  @vite('resources/css/expenses/new-expense.css')
+  @vite('resources/css/expenses/edit-expense.css')
 
   @vite('resources/js/app.js')
   @vite('resources/js/dashboard/todoUpdater.js')
   @vite('resources/js/dashboard/dashBottons.js')
   @vite('resources/js/sidebar/sidebar.js')
+       
+
   @stack('scripts')
   
   <link rel="icon" href="images/favicon.ico" />

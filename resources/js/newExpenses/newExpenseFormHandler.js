@@ -18,13 +18,12 @@ document.getElementById('type').addEventListener('change', function(event) {
                 });
                 sottoCategoriaSelect.disabled = false;
             })
-            .catch(error => console.error('Errore nel recuperare le sotto-caterie. Errore: ', error));
+            .catch(error => console.error('Errore nel recuperare le sotto-categorie. Errore: ', error));
     } else {
         sottoCategoriaSelect.disabled = true;
     }
 });
 
-//document.getElementById('deadline_id').addEventListener('click', async (event) => {
 
 document.addEventListener('DOMContentLoaded', async (event) => {
 

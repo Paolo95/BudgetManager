@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
-use App\Http\Controllers\UserToDoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +32,11 @@ Route::get('/dashboard/home', [DashboardController::class, 'dashboard'])->middle
 
 Route::get('/dashboard/expenses/new_expense', [DashboardController::class, 'insertExpense'])->middleware('auth');
 
+Route::get('/dashboard/expenses/edit_expense', [DashboardController::class, 'editExpense'])->middleware('auth');
+
 Route::get('/dashboard/incomings/new_incoming', [DashboardController::class, 'insertIncoming'])->middleware('auth');
 
 Route::post('/new_expense', [ExpenseController::class, 'createExpense'])->middleware('auth');
 
 Route::redirect('/dashboard', '/dashboard/home');
+

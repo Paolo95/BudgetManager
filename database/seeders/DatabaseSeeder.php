@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
         ]);  
         
         Incoming::create([
-            'date' => '2024-06-12',
+            'date' => '2024-07-12',
             'incoming_category_id' => 1,
             'user_id' => 1,
             'title' => 'Stipendio SELDA',
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2024-06-15',
+            'date' => '2024-07-15',
             'expense_category_id' => 1,
             'user_id' => 1,
             'title'=> 'Bollo',
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2024-06-05',
+            'date' => '2024-07-05',
             'expense_category_id' => 1,
             'user_id' => 1,
             'title'=> 'Bollo',
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2024-06-25',
+            'date' => '2024-07-25',
             'expense_category_id' => 1,
             'user_id' => 1,
             'title'=> 'Bollo',
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2024-06-16',
+            'date' => '2024-07-16',
             'expense_category_id' => 2,
             'user_id' => 1,
             'title'=> 'Benzina',
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2024-05-19',
+            'date' => '2024-07-19',
             'expense_category_id' => 3,
             'user_id' => 1,
             'title'=> 'Cena Sushi',
@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
         UserTodo::create([
             'user_id' => 1,
             'title' => 'Bollo',
-            'date' => '2024-05-10',
+            'date' => '2024-07-10',
             'amount' => 240.45,
             'isDone' => false,
         ]);
@@ -112,7 +112,7 @@ class DatabaseSeeder extends Seeder
         UserTodo::create([
             'user_id' => 1,
             'title' => 'Marmitta',
-            'date' => '2024-05-06',
+            'date' => '2024-07-06',
             'amount' => 40.45,
             'isDone' => false,
         ]);
@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
         UserTodo::create([
             'user_id' => 1,
             'title' => 'Bolletta',
-            'date' => '2024-05-20',
+            'date' => '2024-06-20',
             'amount' => 20.45,
             'isDone' => true,
         ]);
@@ -128,7 +128,7 @@ class DatabaseSeeder extends Seeder
         UserTodo::create([
             'user_id' => 1,
             'title' => 'PC',
-            'date' => '2024-05-20',
+            'date' => '2024-07-20',
             'amount' => 200,
             'isDone' => true,
         ]);
@@ -136,14 +136,14 @@ class DatabaseSeeder extends Seeder
         UserTodo::create([
             'user_id' => 1,
             'title' => 'Telefono',
-            'date' => '2024-06-20',
+            'date' => '2024-07-20',
             'amount' => 20.45,
             'isDone' => false,
         ]);
 
         CreditDebit::create([
             'user_id' => 1,
-            'date' => '2024-06-20',
+            'date' => '2024-07-20',
             'amount' => 20.45,
             'type' => 'Credito',
             'description' => 'Soldi DK'
@@ -151,7 +151,7 @@ class DatabaseSeeder extends Seeder
 
         Deadline::create([
             'user_id' => 1,
-            'date' => '2024-06-20',
+            'date' => '2024-07-20',
             'title' => 'Bollo',            
             'description' => 'Soldi DK',
             'amount' => 20.45,

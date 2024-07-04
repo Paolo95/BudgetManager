@@ -3,7 +3,6 @@
 use App\Http\Controllers\DeadlineController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserToDoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['web'])->group (function () {
-    Route::post('/updateToDo/{id}', [UserToDoController::class, 'updateToDo']);
-    Route::get('/expenses/getSubCategories/{categoria}', [ExpenseCategoryController::class, 'expensesListByCategory']);
-    Route::post('/expenses/newExpense', [ExpenseController::class, 'newExpense']);
-    Route::get('/deadlines/userDeadlines', [DeadlineController::class, 'userDeadlines']);
+    Route::post('/updateToDo/{id}',                             [UserToDoController::class, 'updateToDo']);
+    Route::get('/expenses/getSubCategories/{categoria}',        [ExpenseCategoryController::class, 'expensesListByCategory']);
+    Route::post('/expenses/newExpense',                         [ExpenseController::class, 'newExpense']);
+    Route::get('/expenses/searchExpense',                       [ExpenseController::class, 'searchExpenseByDateRange']);
+    Route::get('/expenses/loadExpenseData/{expenseID}',         [ExpenseController::class, 'loadExpenseData']);
+    Route::post('/expenses/deleteExpenseData/{expenseID}',    [ExpenseController::class, 'deleteExpense']);
+    Route::post('/expenses/editExpense',                        [ExpenseController::class, 'editExpense']);
+    Route::get('/deadlines/userDeadlines',                      [DeadlineController::class, 'userDeadlines']);
+    
 });
 
 
