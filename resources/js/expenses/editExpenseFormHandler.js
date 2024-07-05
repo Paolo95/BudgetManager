@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', async (event) => {
             event.preventDefault();
             
-            const expenseId = link.getAttribute('data-expense-id');
-            const url = `/api/expenses/loadExpenseData/${expenseId}`; // Replace with your API endpoint to fetch expense details
+            const expenseID = link.getAttribute('data-expense-id');
+            const url = `/api/expenses/loadExpenseData/${expenseID}`; // Replace with your API endpoint to fetch expense details
             
             try {
                 const response = await fetch(url);
@@ -161,10 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok.');
                 }                
-                
-                const data = await response.json();
-
-                console.log(response)
+            
 
                 if (response.status === 200) {
                     toastr.success('Spesa eliminata con successo!');

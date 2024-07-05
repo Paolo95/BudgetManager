@@ -12,14 +12,14 @@ class ExpenseCategoryController extends Controller
         return ExpenseCategory::all();
     }
 
-    public function expensesListByCategory($categoria)
+    public function expensesSubTypeListByCategory($categoria)
     {
-        $expensesListByCategory = ExpenseCategory::select('id', 'subtype')
+        $expensesSubTypeListByCategory = ExpenseCategory::select('id', 'subtype')
                                         ->where('type', $categoria)
                                         ->orderBy('type', 'desc')
                                         ->get();
         
-        return response()->json($expensesListByCategory);
+        return response()->json($expensesSubTypeListByCategory);
     }
 
     public function findExpenseCategoryID($type, $subtype) : int

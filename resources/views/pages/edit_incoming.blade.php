@@ -2,19 +2,18 @@
 
     @php
         
-        $expenses            = session('expenses', []);
+        $incomings           = session('incomings', []);
         $startDate           = session('start_date', null);
-      
        
     @endphp
 
-    <x-slot name="title">Modifica Spesa</x-slot>
+    <x-slot name="title">Modifica Entrata</x-slot>
 
-    <div class="edit_expense-div">
-        <h1>Modifica Spesa</h1>
+    <div class="edit_incoming-div">
+        <h1>Modifica Entrata</h1>
 
         <!-- Search Form by Date Range -->
-        <form action="/api/expenses/searchExpense" method="GET" class="expenses-search-form" id="expenses-search-form">
+        <form action="/api/incomings/searchIncoming" method="GET" class="incomings-search-form" id="incomings-search-form">
             @csrf
             <label for="start_date">Data inizio:</label>
             <input type="date" id="start_date" name="start_date" value="{{ $startDate ? $startDate->format('Y-m-d') : '' }}" required>
@@ -22,17 +21,13 @@
             <label for="end_date">Data fine:</label>
             <input type="date" id="end_date" name="end_date" value="{{ now()->format('Y-m-d') }}" required>
         
-            <button id="search-button" type="submit">Cerca per Data</button>
-      
-            
+            <button id="search-button" type="submit">Cerca per Data</button>            
 
         </form>
         
+        @if(isset($incomings) && count($incomings) > 0)
 
-         <!-- Expense List Table -->
-        @if(isset($expenses) && count($expenses) > 0)
-
-            <table class="expense-list-table">
+            <table class="incoming-list-table">
                 <thead>
                     <tr>
                         <th>Data</th>
@@ -44,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($expenses as $exp)
+                    @foreach($incomings as $exp)
                     <tr>
                         <td>{{ \Carbon\Carbon::parse($exp->date)->format('d/m/Y') }}</td>
                         <td>{{ $exp->type }}</td>
@@ -52,23 +47,21 @@
                         <td>{{ $exp->title }}</td>
                         <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
                         <td>
-                            <a href="" class="edit-expense" data-expense-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-expense" data-expense-id="{{ $exp->id }}">Elimina</a>
+                            <a href="" class="edit-incoming" data-incoming-id="{{ $exp->id }}">Modifica</a>
+                            <a href="" class="delete-incoming" data-incoming-id="{{ $exp->id }}">Elimina</a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-        @elseif(isset($expenses) && count($expenses) === 0)
-            <p>Nessuna spesa trovata nel periodo selezionato.</p>
+        @elseif(isset($incomings) && count($incomings) === 0)
+            <p>Nessuna entrata trovata nel periodo selezionato.</p>
         @endif
 
-        <!-- Expense Edit Form -->
-        <form action="/api/expenses/editExpense" method="POST" class="edit-form" id="edit-form">
+        <form action="/api/incomings/editIncoming" method="POST" class="edit-form" id="edit-form">
             <div id="edit-form-div" style="display: none;">
                 
                 @csrf
-                <!-- Input fields for editing a specific expense -->
 
                 <input type="number" id="id" name="id" value="" hidden>
 
@@ -83,12 +76,6 @@
                 <label for="subtype">Sotto-categoria:</label>
                 <select id="subtype" name="subtype" required disabled>
    
-                </select>
-        
-                <label for="deadline_id">Scadenza:</label>
-                <select id="deadline_id" name="deadline_id">
-                    <option value="" disabled selected>Seleziona Scadenza</option>
-      
                 </select>
         
                 <label for="title">Titolo:</label>
@@ -110,7 +97,7 @@
     </div>
 
     @push('scripts')
-        @vite('resources/js/expenses/editExpenseFormHandler.js')
+        @vite('resources/js/incomings/editIncomingFormHandler.js')
     @endpush
 
 </x-dashboard-layout>

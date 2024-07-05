@@ -36,6 +36,8 @@ Route::get('/dashboard/expenses/edit_expense', [DashboardController::class, 'edi
 
 Route::get('/dashboard/incomings/new_incoming', [DashboardController::class, 'insertIncoming'])->middleware('auth');
 
+Route::get('/dashboard/incomings/edit_incoming', [DashboardController::class, 'editIncoming'])->middleware('auth');
+
 Route::post('/new_expense', [ExpenseController::class, 'createExpense'])->middleware('auth');
 
 Route::redirect('/dashboard', '/dashboard/home');

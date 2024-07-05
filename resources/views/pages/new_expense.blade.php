@@ -43,7 +43,7 @@
     </div>
 
     @push('scripts')
-        @vite('resources/js/newExpenses/newExpenseFormHandler.js')
+        @vite('resources/js/expenses/newExpenseFormHandler.js')
     @endpush
 
 </x-dashboard-layout>

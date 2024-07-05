@@ -62,15 +62,16 @@ class DashboardController extends Controller
         return view('pages.new_expense');
     }
 
-    public function insertIncoming() {
-        return view('pages.new_incoming');
-    }
-
     public function editExpense() {
         return view('pages.edit_expense');
     }
 
-    public function removeExpense() {
-        return view('pages.remove_expense');
+    public function insertIncoming() {
+        return view('pages.new_incoming');
     }
+
+    public function editIncoming() {
+        return view('pages.edit_incoming');
+    }
+
 }

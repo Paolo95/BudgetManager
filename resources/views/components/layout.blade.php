@@ -15,6 +15,9 @@
   @vite('resources/css/expenses/new-expense.css')
   @vite('resources/css/expenses/edit-expense.css')
 
+  @vite('resources/css/incomings/new-incoming.css')
+  @vite('resources/css/incomings/edit-incoming.css')
+
   @vite('resources/js/app.js')
   @vite('resources/js/dashboard/todoUpdater.js')
   @vite('resources/js/dashboard/dashBottons.js')

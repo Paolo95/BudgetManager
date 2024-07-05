@@ -55,18 +55,13 @@
                     </a>
                     <ul class="submenu hidden">
                         <li>
-                            <a href="/dashboard/new_expense/category" class="block py-2 px-4">
+                            <a href="/dashboard/incomings/new_incoming" class="block py-2 px-4">
                                 Inserisci Entrata
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard/new_expense/date" class="block py-2 px-4">
+                            <a href="/dashboard/incomings/edit_incoming" class="block py-2 px-4">
                                 Modifica Entrata
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/dashboard/new_expense/date" class="block py-2 px-4">
-                                Elimina Entrata
                             </a>
                         </li>
                     </ul>
