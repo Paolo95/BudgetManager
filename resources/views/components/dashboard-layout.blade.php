@@ -1,6 +1,8 @@
 <x-layout>
     <x-slot name="title">Dashboard</x-slot>
 
+    <button class="toggle-sidebar-btn" onclick="toggleSidebar()">☰ Menu</button>
+
     <div class="flex gap-4 dashboard-container">
         <aside class="sidebar w-1/5 border">
             <ul>
@@ -143,5 +145,10 @@
             
         </div>
     </div>
+
+    @push('scripts')
+        @vite('resources/js/sidebarButton/sidebarButtonHandler.js')
+    @endpush
+
 </x-layout>
 

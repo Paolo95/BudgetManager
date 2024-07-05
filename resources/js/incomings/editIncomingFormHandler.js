@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                       
                 // Show the edit form if hidden
-                document.getElementById('edit-form-div').style.display = 'block';
+                document.getElementById('edit-form-div').style.display = 'flex';
             } catch (error) {
                 console.error('Error fetching expense details:', error);
                 // Handle error display or logging as needed
@@ -106,7 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     deleteIncomingsLinks.forEach(link => {
         link.addEventListener('click', async (event) => {
+
             event.preventDefault();
+
+            const userConfirmed = confirm('Sei sicuro di voler eliminare questa entrata?');
+
+            if (!userConfirmed) {
+                return;
+            }
             
             const incomingID = link.getAttribute('data-incoming-id');
             const url = `/api/incomings/deleteIncoming/${incomingID}`;

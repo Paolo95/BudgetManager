@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                       
                 // Show the edit form if hidden
-                document.getElementById('edit-form-div').style.display = 'block';
+                document.getElementById('edit-form-div').style.display = 'flex';
             } catch (error) {
                 console.error('Error fetching creditDebit details:', error);
                 // Handle error display or logging as needed
@@ -40,7 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     deleteCreditDebitLinks.forEach(link => {
         link.addEventListener('click', async (event) => {
-            event.preventDefault();
+
+        event.preventDefault();
+
+        const userConfirmed = confirm('Sei sicuro di voler eliminare questo credito/debito?');
+
+        if (!userConfirmed) {
+            return;
+        }
             
             const creditDebitID = link.getAttribute('data-creditDebit-id');
             const url = `/api/creditDebits/deleteCreditDebit/${creditDebitID}`;

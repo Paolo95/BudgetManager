@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                       
                 // Show the edit form if hidden
-                document.getElementById('edit-form-div').style.display = 'block';
+                document.getElementById('edit-form-div').style.display = 'flex';
             } catch (error) {
                 console.error('Error fetching expense details:', error);
                 // Handle error display or logging as needed
@@ -142,7 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     deleteExpenseLinks.forEach(link => {
         link.addEventListener('click', async (event) => {
+            
             event.preventDefault();
+
+            const userConfirmed = confirm('Sei sicuro di voler eliminare questa spesa?');
+
+            if (!userConfirmed) {
+                return;
+            }
             
             const expenseID = link.getAttribute('data-expense-id');
             const url = `/api/expenses/deleteExpense/${expenseID}`;

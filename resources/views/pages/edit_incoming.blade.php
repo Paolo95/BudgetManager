@@ -21,7 +21,7 @@
             <label for="end_date">Data fine:</label>
             <input type="date" id="end_date" name="end_date" value="{{ now()->format('Y-m-d') }}" required>
         
-            <button id="search-button" type="submit">Cerca per Data</button>            
+            <button id="search-button" type="submit">Cerca</button>            
 
         </form>
         

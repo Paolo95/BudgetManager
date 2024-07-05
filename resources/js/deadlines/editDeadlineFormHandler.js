@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                       
                 // Show the edit form if hidden
-                document.getElementById('edit-form-div').style.display = 'block';
+                document.getElementById('edit-form-div').style.display = 'flex';
             } catch (error) {
                 console.error('Error fetching deadline details:', error);
                 // Handle error display or logging as needed
@@ -38,7 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     deleteDeadlineLinks.forEach(link => {
         link.addEventListener('click', async (event) => {
+
             event.preventDefault();
+
+            const userConfirmed = confirm('Sei sicuro di voler eliminare questa scadenza?');
+
+            if (!userConfirmed) {
+                return;
+            }
             
             const deadlineID = link.getAttribute('data-deadline-id');
             const url = `/api/deadlines/deleteDeadline/${deadlineID}`;

@@ -278,7 +278,7 @@
 
             </div>
 
-            <div class="dashboard-resumeTab-div-fixedHeight">
+            <div class="dashboard-resumeTab-div">
                 <div class="dashboard-tabs">
                     <div class="dashboard-tablediv">
                         <table class="dashboard-table2">

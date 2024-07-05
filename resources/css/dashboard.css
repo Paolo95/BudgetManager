@@ -47,13 +47,6 @@
     justify-content: center;
 }
 
-.dashboard-resumeTab-div-fixedHeight{
-    width: 100%;
-
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
 
 .dashboard-content .dashboard-tabs{
     display: flex;
@@ -434,3 +427,78 @@
     transform: translateX(14px);
   }
   
+
+/* Add responsive design for smaller screens */
+@media (max-width: 1300px) {
+    .dashboard-div {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dashboard-resumeTab-div{
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .dashboard-content .dashboard-tabs {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .dashboard-content .dashboard-tabs .dash-table {
+        width: 100%;
+    }
+
+    .dashboard-content .dashboard-tabs .summary-tab {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dashboard-content .dashboard-graphs {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .dashboard-content .dashboard-tabs .incomings-tab,
+    .dashboard-content .dashboard-tabs .expenses-tab,
+    .dashboard-content .dashboard-tabs .balance-tab,
+    .dashboard-content .dashboard-tabs .todo-tab {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .dashboard-content .dashboard-tabs .todo-tab .todo-subtab {
+        height: auto;
+    }
+
+    .dashboard-tablediv {
+        margin: 10px 0;
+    }
+
+    .dashboard-table2 th, .dashboard-table2 td,
+    .dashboard-table th, .dashboard-table td {
+        padding: 8px 10px;
+    }
+
+    .circle-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .circle-button i {
+        font-size: 20px;
+    }
+
+    .new-button, .remove-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .new-button::before, .remove-button::before {
+        right: 50px;
+    }
+}
