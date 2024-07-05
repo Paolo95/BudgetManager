@@ -1,0 +1,141 @@
+/* Global styles (assuming you have defined variables elsewhere) */
+:root {
+    --main-blue: #007bff;
+    --main-bg-light-color: #cce5ff;
+}
+
+/* Styles for edit_expense-div */
+.edit_creditDebit-div {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit_creditDebit-div h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Styles for search form */
+.creditDebits-search-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.creditDebits-search-formlabel {
+    margin-right: 10px;
+}
+
+.creditDebits-search-form input[type="date"],
+.creditDebits-search-form button[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.creditDebits-search-form button[type="submit"] {
+    background-color: var(--main-blue);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.creditDebits-search-form button[type="submit"]:hover {
+    background-color: var(--main-bg-light-color);
+}
+
+/* Styles for expense list table */
+.creditDebit-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.creditDebit-list-table th,
+.creditDebit-list-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.creditDebit-list-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.creditDebit-list-table td {
+    background-color: #fff;
+}
+
+.creditDebit-list-table td a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: var(--main-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.creditDebit-list-table td a:hover {
+    background-color: var(--main-bg-light-color);
+}
+
+/* Styles for edit form */
+.edit-form {
+    margin-top: 20px;
+}
+
+.edit-form label {
+    font-weight: bold;
+}
+
+.edit-form input[type="date"],
+.edit-form input[type="text"],
+.edit-form input[type="number"],
+.edit-form textarea,
+.edit-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.edit-form select {
+    appearance: none;
+}
+
+.edit-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--main-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-form button[type="submit"]:hover {
+    background-color: var(--main-bg-light-color);
+}
+
+.creditDebit-list-table .delete-creditDebit{
+    background-color: lightcoral;
+}
+
+.creditDebit-list-table .delete-creditDebit:hover {
+    background-color: var(--light-red);
+}

@@ -149,6 +149,14 @@ class DatabaseSeeder extends Seeder
             'description' => 'Soldi DK'
         ]);
 
+        CreditDebit::create([
+            'user_id' => 1,
+            'date' => '2024-07-20',
+            'amount' => 20.45,
+            'type' => 'Debito',
+            'description' => 'Soldi'
+        ]);
+
         Deadline::create([
             'user_id' => 1,
             'date' => '2024-07-20',

@@ -316,7 +316,7 @@
                                 @foreach ($userCreditDebitOnLastMonth as $index)
                                 <tr>
                                     <td>{{ \Carbon\Carbon::parse($index->date)->format('d-m-Y') }}</td>
-                                    <td class={{ ($item->identifier === 'Debito') ? "tableDataNegativeStyle" : "tableDataPositiveStyle" }}>{{ $index->type }}</td>    
+                                    <td class={{ ($index->type === 'Debito') ? "tableDataNegativeStyle" : "tableDataPositiveStyle" }}>{{ $index->type }}</td>    
                                     <td>{{ $index->description }}</td> 
                                     <td>{{ number_format($index->amount, 2, ",",".") }} €</td>                    
                                 </tr>                                

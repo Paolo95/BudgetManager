@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             
             const incomingID = link.getAttribute('data-incoming-id');
-            const url = `/api/incomings/deleteIncomingData/${incomingID}`;
+            const url = `/api/incomings/deleteIncoming/${incomingID}`;
             
             try {
 

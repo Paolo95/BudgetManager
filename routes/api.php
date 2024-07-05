@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CreditDebitController;
 use App\Http\Controllers\DeadlineController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
@@ -26,21 +27,37 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['web'])->group (function () {
-    Route::post('/updateToDo/{id}',                             [UserToDoController::class, 'updateToDo']);
-    Route::get('/expenses/getSubCategories/{categoria}',        [ExpenseCategoryController::class, 'expensesSubTypeListByCategory']);
-    Route::post('/expenses/newExpense',                         [ExpenseController::class, 'newExpense']);
-    Route::get('/expenses/searchExpense',                       [ExpenseController::class, 'searchExpenseByDateRange']);
-    Route::get('/expenses/loadExpenseData/{expenseID}',         [ExpenseController::class, 'loadExpenseData']);
-    Route::post('/expenses/deleteExpenseData/{expenseID}',      [ExpenseController::class, 'deleteExpense']);
-    Route::post('/expenses/editExpense',                        [ExpenseController::class, 'editExpense']);
-    Route::get('/deadlines/userDeadlines',                      [DeadlineController::class, 'userDeadlines']);
+    Route::post('/updateToDo/{id}',                                 [UserToDoController::class, 'updateToDo']);
+
+    Route::get('/expenses/getSubCategories/{categoria}',            [ExpenseCategoryController::class, 'expensesSubTypeListByCategory']);
     
-    Route::get('/incomings/getSubCategories/{categoria}',        [IncomingCategoryController::class, 'incomingsSubTypeListByCategory']);
-    Route::post('/incomings/newIncoming',                        [IncomingController::class, 'newIncoming']);
-    Route::get('/incomings/searchIncoming',                      [IncomingController::class, 'searchIncomingByDateRange']);
-    Route::get('/incomings/loadIncomingData/{incomingID}',       [IncomingController::class, 'loadIncomingData']);
-    Route::post('/incomings/deleteIncomingData/{incomingID}',    [IncomingController::class, 'deleteIncoming']);
-    Route::post('/incomings/editIncoming',                       [IncomingController::class, 'editIncoming']);
+    Route::post('/expenses/newExpense',                             [ExpenseController::class, 'newExpense']);
+    Route::get('/expenses/searchExpense',                           [ExpenseController::class, 'searchExpenseByDateRange']);
+    Route::get('/expenses/loadExpenseData/{expenseID}',             [ExpenseController::class, 'loadExpenseData']);
+    Route::post('/expenses/deleteExpense/{expenseID}',              [ExpenseController::class, 'deleteExpense']);
+    Route::post('/expenses/editExpense',                            [ExpenseController::class, 'editExpense']);
+  
+    
+    Route::get('/incomings/getSubCategories/{categoria}',           [IncomingCategoryController::class, 'incomingsSubTypeListByCategory']);
+    
+    Route::post('/incomings/newIncoming',                           [IncomingController::class, 'newIncoming']);
+    Route::get('/incomings/searchIncoming',                         [IncomingController::class, 'searchIncomingByDateRange']);
+    Route::get('/incomings/loadIncomingData/{incomingID}',          [IncomingController::class, 'loadIncomingData']);
+    Route::post('/incomings/deleteIncoming/{incomingID}',           [IncomingController::class, 'deleteIncoming']);
+    Route::post('/incomings/editIncoming',                          [IncomingController::class, 'editIncoming']);
+
+    Route::get('/deadlines/userDeadlines',                          [DeadlineController::class, 'userDeadlines']);
+    Route::post('/deadlines/newDeadline',                           [DeadlineController::class, 'newDeadline']);
+    Route::get('/deadlines/searchDeadline',                         [DeadlineController::class, 'searchDeadlineByDateRange']);
+    Route::post('/deadlines/editDeadline',                          [DeadlineController::class, 'editDeadline']);
+    Route::get('/deadlines/loadDeadlineData/{deadlineID}',          [DeadlineController::class, 'loadDeadlineData']);
+    Route::post('/deadlines/deleteDeadline/{deadlineID}',           [DeadlineController::class, 'deleteDeadline']);
+
+    Route::post('/creditDebits/newCreditDebit',                      [CreditDebitController::class, 'newCreditDebit']);
+    Route::get('/creditDebits/searchCreditDebit',                    [CreditDebitController::class, 'searchCreditDebitByDateRange']);
+    Route::get('/creditDebits/loadCreditDebitData/{creditDebitID}',  [CreditDebitController::class, 'loadCreditDebitData']);
+    Route::post('/creditDebits/editCreditDebit',                     [CreditDebitController::class, 'editCreditDebit']);
+    Route::post('/creditDebits/deleteCreditDebit/{creditDebitID}',   [CreditDebitController::class, 'deleteCreditDebit']);
 });
 
 

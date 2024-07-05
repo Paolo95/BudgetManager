@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             
             const expenseID = link.getAttribute('data-expense-id');
-            const url = `/api/expenses/deleteExpenseData/${expenseID}`;
+            const url = `/api/expenses/deleteExpense/${expenseID}`;
             
             try {
 

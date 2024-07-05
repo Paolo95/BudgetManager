@@ -10,7 +10,7 @@ class CreditDebit extends Model
 {
     use HasFactory;
 
-    protected $table = 'credit_debit';
+    protected $table = 'credit_debits';
 
     public $timestamps = false;
 

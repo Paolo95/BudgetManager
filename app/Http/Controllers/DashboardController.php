@@ -74,4 +74,20 @@ class DashboardController extends Controller
         return view('pages.edit_incoming');
     }
 
+    public function insertDeadline() {
+        return view('pages.new_deadline');
+    }
+
+    public function editDeadline() {
+        return view('pages.edit_deadline');
+    }
+
+    public function insertCreditDebits() {
+        return view('pages.new_creditDebit');
+    }
+
+    public function editCreditDebits() {
+        return view('pages.edit_creditDebit');
+    }
+
 }

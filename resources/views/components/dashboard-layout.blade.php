@@ -80,18 +80,13 @@
                     </a>
                     <ul class="submenu hidden">
                         <li>
-                            <a href="/dashboard/new_expense/category" class="block py-2 px-4">
+                            <a href="/dashboard/deadlines/new_deadline" class="block py-2 px-4">
                                 Inserisci Scadenza
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard/new_expense/date" class="block py-2 px-4">
+                            <a href="/dashboard/deadlines/edit_deadline" class="block py-2 px-4">
                                 Modifica Scadenza
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/dashboard/new_expense/date" class="block py-2 px-4">
-                                Elimina Scadenza
                             </a>
                         </li>
                     </ul>
@@ -110,48 +105,19 @@
                     </a>
                     <ul class="submenu hidden">
                         <li>
-                            <a href="/dashboard/new_expense/category" class="block py-2 px-4">
+                            <a href="/dashboard/creditDebits/new_creditDebit" class="block py-2 px-4">
                                 Inserisci Credito/Debito
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard/new_expense/date" class="block py-2 px-4">
+                            <a href="/dashboard/creditDebits/edit_creditDebit" class="block py-2 px-4">
                                 Modifica Credito/Debito
                             </a>
                         </li>
-                        <li>
-                            <a href="/dashboard/new_expense/date" class="block py-2 px-4">
-                                Elimina Credito/Debito
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
-                <li class="menu-item {{ request()->is('dashboard/new_expense') ? 'active' : '' }}">
-                    <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link">
-                        <div class="flex w-auto sidebar-navbar-div">
-                            <div class="w-7">
-                                <i class="sidebar-icon fas fa-euro-sign"></i>
-                            </div>
-                            <div>
-                                <span>Gestione Spese</span>
-                            </div>
-                        </div>
-                    </a>
-                    <ul class="submenu hidden">
-                        <li>
-                            <a href="/dashboard/new_expense/category" class="block py-2 px-4">
-                                Inserisci spesa
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/dashboard/new_expense/date" class="block py-2 px-4">
-                                Modifica Spesa
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
+                
                 <li class="menu-item {{ request()->is('dashboard/new_expense') ? 'active' : '' }}">
                     <a href="/dashboard/summary" class="block py-2 px-4 main-menu-link">
                         <div class="flex w-auto sidebar-navbar-div">
