@@ -1,4 +1,4 @@
-.creditDebit-div {
+.new_forms-div {
     max-width: 600px;
     margin: 30px auto;
     padding: 20px;
@@ -8,26 +8,26 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.creditDebit-div h1 {
+.new_forms-div h1 {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.creditDebit-div form {
+.new_forms-div form {
     display: grid;
     gap: 15px;
 }
 
-.creditDebit-div label {
+.new_forms-div label {
     font-weight: bold;
 }
 
-.creditDebit-div input[type="date"],
-.creditDebit-div input[type="text"],
-.creditDebit-div input[type="number"],
-.creditDebit-div textarea,
-.creditDebit-div select {
+.new_forms-div input[type="date"],
+.new_forms-div input[type="text"],
+.new_forms-div input[type="number"],
+.new_forms-div textarea,
+.new_forms-div select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -36,11 +36,11 @@
     box-sizing: border-box;
 }
 
-.creditDebit-div select {
+.new_forms-div select {
     appearance: none;
 }
 
-.creditDebit-div button[type="submit"] {
+.new_forms-div button[type="submit"] {
     width: 100%;
     padding: 10px;
     background-color: var(--main-blue);
@@ -52,6 +52,6 @@
     transition: background-color 0.3s ease;
 }
 
-.creditDebit-div button[type="submit"]:hover {
+.new_forms-div button[type="submit"]:hover {
     background-color: var(--main-bg-light-color);
 }

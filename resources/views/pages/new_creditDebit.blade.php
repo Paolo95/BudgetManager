@@ -2,7 +2,7 @@
 
     <x-slot name="title">Inserisci Credito/Debito</x-slot>
 
-    <div class="creditDebit-div">
+    <div class="new_forms-div">
         <h1>Inserisci una nuova credito/debito</h1>
         <form action="/api/creditDebits/newCreditDebit" method="POST">
             @csrf

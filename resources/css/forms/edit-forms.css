@@ -5,7 +5,7 @@
 }
 
 /* Styles for edit_expense-div */
-.edit_creditDebit-div {
+.edit_forms-div {
     max-width: 800px;
     margin: 30px auto;
     padding: 20px;
@@ -15,24 +15,24 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.edit_creditDebit-div h1 {
+.edit_forms-div h1 {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
 }
 
 /* Styles for search form */
-.creditDebits-search-form {
+.search-form {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.creditDebits-search-formlabel {
+.expenses-search-formlabel {
     margin-right: 10px;
 }
 
-.creditDebits-search-form input[type="date"],
-.creditDebits-search-form button[type="submit"] {
+.search-form input[type="date"],
+.search-form button[type="submit"] {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;
@@ -40,7 +40,7 @@
     margin-right: 10px;
 }
 
-.creditDebits-search-form button[type="submit"] {
+.search-form button[type="submit"] {
     background-color: var(--main-blue);
     color: white;
     border: none;
@@ -48,34 +48,43 @@
     transition: background-color 0.3s ease;
 }
 
-.creditDebits-search-form button[type="submit"]:hover {
+.search-form button[type="submit"]:hover {
     background-color: var(--main-bg-light-color);
 }
 
 /* Styles for expense list table */
-.creditDebit-list-table {
+.form-list-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-.creditDebit-list-table th,
-.creditDebit-list-table td {
+.form-list-table th,
+.form-list-table td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
 }
 
-.creditDebit-list-table th {
+.form-list-table th {
     background-color: #f2f2f2;
     font-weight: bold;
+    text-align: center;
 }
 
-.creditDebit-list-table td {
+.form-list-table td {
     background-color: #fff;
+    text-align: center;
 }
 
-.creditDebit-list-table td a {
+.form-list-table .td-form-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-list-table td a {
     display: inline-block;
     padding: 5px 10px;
     background-color: var(--main-blue);
@@ -85,7 +94,7 @@
     transition: background-color 0.3s ease;
 }
 
-.creditDebit-list-table td a:hover {
+.form-list-table td a:hover {
     background-color: var(--main-bg-light-color);
 }
 
@@ -132,10 +141,10 @@
     background-color: var(--main-bg-light-color);
 }
 
-.creditDebit-list-table .delete-creditDebit{
+.form-list-table .delete-form-button{
     background-color: lightcoral;
 }
 
-.creditDebit-list-table .delete-creditDebit:hover {
+.form-list-table .delete-form-button:hover {
     background-color: var(--light-red);
 }

@@ -10,11 +10,11 @@
 
     <x-slot name="title">Modifica Credito/Debito</x-slot>
 
-    <div class="edit_creditDebit-div">
+    <div class="edit_forms-div">
         <h1>Modifica Credito/Debito</h1>
 
         <!-- Search Form by Date Range -->
-        <form action="/api/creditDebits/searchCreditDebit" method="GET" class="creditDebits-search-form" id="creditDebits-search-form">
+        <form action="/api/creditDebits/searchCreditDebit" method="GET" class="search-form" id="search-form">
             @csrf
             <label for="start_date">Data inizio:</label>
             <input type="date" id="start_date" name="start_date" value="{{ $startDate ? $startDate->format('Y-m-d') : '' }}" required>
@@ -32,7 +32,7 @@
          <!-- Expense List Table -->
         @if(isset($creditDebits) && count($creditDebits) > 0)
 
-            <table class="creditDebit-list-table">
+            <table class="form-list-table">
                 <thead>
                     <tr>
                         <th>Data</th>
@@ -51,7 +51,7 @@
                         <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
                         <td>
                             <a href="" class="edit-creditDebit" data-creditDebit-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-creditDebit" data-creditDebit-id="{{ $exp->id }}">Elimina</a>
+                            <a href="" class="delete-creditDebit delete-form-button" data-creditDebit-id="{{ $exp->id }}">Elimina</a>
                         </td>
                     </tr>
                     @endforeach

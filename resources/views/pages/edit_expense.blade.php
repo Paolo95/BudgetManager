@@ -10,11 +10,11 @@
 
     <x-slot name="title">Modifica Spesa</x-slot>
 
-    <div class="edit_expense-div">
+    <div class="edit_forms-div">
         <h1>Modifica Spesa</h1>
 
         <!-- Search Form by Date Range -->
-        <form action="/api/expenses/searchExpense" method="GET" class="expenses-search-form" id="expenses-search-form">
+        <form action="/api/expenses/searchExpense" method="GET" class="search-form" id="search-form">
             @csrf
             <label for="start_date">Data inizio:</label>
             <input type="date" id="start_date" name="start_date" value="{{ $startDate ? $startDate->format('Y-m-d') : '' }}" required>
@@ -32,7 +32,7 @@
          <!-- Expense List Table -->
         @if(isset($expenses) && count($expenses) > 0)
 
-            <table class="expense-list-table">
+            <table class="form-list-table">
                 <thead>
                     <tr>
                         <th>Data</th>
@@ -53,7 +53,7 @@
                         <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
                         <td>
                             <a href="" class="edit-expense" data-expense-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-expense" data-expense-id="{{ $exp->id }}">Elimina</a>
+                            <a href="" class="delete-expense delete-form-button" data-expense-id="{{ $exp->id }}">Elimina</a>
                         </td>
                     </tr>
                     @endforeach

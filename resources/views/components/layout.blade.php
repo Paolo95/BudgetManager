@@ -12,17 +12,8 @@
   @vite('resources/css/home.css')
   @vite('resources/css/dashboard.css')
   @vite('resources/css/navbar.css')
-  @vite('resources/css/expenses/new-expense.css')
-  @vite('resources/css/expenses/edit-expense.css')
-
-  @vite('resources/css/incomings/new-incoming.css')
-  @vite('resources/css/incomings/edit-incoming.css')
-
-  @vite('resources/css/deadlines/new-deadline.css')
-  @vite('resources/css/deadlines/edit-deadline.css')
-
-  @vite('resources/css/creditDebits/new-creditDebit.css')
-  @vite('resources/css/creditDebits/edit-creditDebit.css')
+  @vite('resources/css/forms/new-forms.css')
+  @vite('resources/css/forms/edit-forms.css')
 
   @vite('resources/js/app.js')
   @vite('resources/js/dashboard/todoUpdater.js')

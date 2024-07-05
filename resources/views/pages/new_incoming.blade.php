@@ -2,7 +2,7 @@
 
     <x-slot name="title">Inserisci Entrata</x-slot>
 
-    <div class="new_incoming-div">
+    <div class="new_forms-div">
         <h1>Inserisci una nuova entrata</h1>
         <form action="/api/incomings/newIncoming" method="POST">
             @csrf

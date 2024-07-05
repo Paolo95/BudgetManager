@@ -10,11 +10,11 @@
 
     <x-slot name="title">Modifica Scadenza</x-slot>
 
-    <div class="edit_deadline-div">
+    <div class="edit_forms-div">
         <h1>Modifica Scadenza</h1>
 
         <!-- Search Form by Date Range -->
-        <form action="/api/deadlines/searchDeadline" method="GET" class="deadlines-search-form" id="deadlines-search-form">
+        <form action="/api/deadlines/searchDeadline" method="GET" class="search-form" id="search-form">
             @csrf
             <label for="start_date">Data inizio:</label>
             <input type="date" id="start_date" name="start_date" value="{{ $startDate ? $startDate->format('Y-m-d') : '' }}" required>
@@ -28,7 +28,7 @@
         
         @if(isset($deadlines) && count($deadlines) > 0)
 
-            <table class="deadline-list-table">
+            <table class="form-list-table">
                 <thead>
                     <tr>
                         <th>Data</th>
@@ -45,7 +45,7 @@
                         <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
                         <td>
                             <a href="" class="edit-deadline" data-deadline-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-deadline" data-deadline-id="{{ $exp->id }}">Elimina</a>
+                            <a href="" class="delete-deadline delete-form-button" data-deadline-id="{{ $exp->id }}">Elimina</a>
                         </td>
                     </tr>
                     @endforeach

@@ -9,11 +9,11 @@
 
     <x-slot name="title">Modifica Entrata</x-slot>
 
-    <div class="edit_incoming-div">
+    <div class="edit_forms-div">
         <h1>Modifica Entrata</h1>
 
         <!-- Search Form by Date Range -->
-        <form action="/api/incomings/searchIncoming" method="GET" class="incomings-search-form" id="incomings-search-form">
+        <form action="/api/incomings/searchIncoming" method="GET" class="search-form" id="search-form">
             @csrf
             <label for="start_date">Data inizio:</label>
             <input type="date" id="start_date" name="start_date" value="{{ $startDate ? $startDate->format('Y-m-d') : '' }}" required>
@@ -27,7 +27,7 @@
         
         @if(isset($incomings) && count($incomings) > 0)
 
-            <table class="incoming-list-table">
+            <table class="form-list-table">
                 <thead>
                     <tr>
                         <th>Data</th>
@@ -48,7 +48,7 @@
                         <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
                         <td>
                             <a href="" class="edit-incoming" data-incoming-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-incoming" data-incoming-id="{{ $exp->id }}">Elimina</a>
+                            <a href="" class="delete-incoming delete-form-button" data-incoming-id="{{ $exp->id }}">Elimina</a>
                         </td>
                     </tr>
                     @endforeach

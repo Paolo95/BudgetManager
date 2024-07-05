@@ -2,7 +2,7 @@
 
     <x-slot name="title">Inserisci Scadenza</x-slot>
 
-    <div class="new_deadline-div">
+    <div class="new_forms-div">
         <h1>Inserisci una nuova scadenza</h1>
         <form action="/api/deadlines/newDeadline" method="POST">
             @csrf

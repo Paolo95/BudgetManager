@@ -2,7 +2,7 @@
 
     <x-slot name="title">Inserisci Spesa</x-slot>
 
-    <div class="new_expense-div">
+    <div class="new_forms-div">
         <h1>Inserisci una nuova spesa</h1>
         <form action="/api/expenses/newExpense" method="POST">
             @csrf
