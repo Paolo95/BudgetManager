@@ -90,4 +90,8 @@ class DashboardController extends Controller
         return view('pages.edit_creditDebit');
     }
 
+    public function summary() {
+        return view('pages.summary');
+    }
+
 }

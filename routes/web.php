@@ -46,7 +46,8 @@ Route::get('/dashboard/creditDebits/new_creditDebit', [DashboardController::clas
 
 Route::get('/dashboard/creditDebits/edit_creditDebit', [DashboardController::class, 'editCreditDebits'])->middleware('auth');
 
-Route::post('/new_expense', [ExpenseController::class, 'createExpense'])->middleware('auth');
+Route::get('/dashboard/summary', [DashboardController::class, 'summary'])->middleware('auth');
+
 
 Route::redirect('/dashboard', '/dashboard/home');
 

@@ -335,7 +335,18 @@
     transition: all 0.3s ease;
 }
 
+.edit-button {
+    opacity: 0;
+    visibility: hidden;
+    bottom: 20px; 
+    right: 20px;
+    background-color: orange;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
 .show-buttons .new-button,
+.show-buttons .edit-button,
 .show-buttons .remove-button {
     opacity: 1;
     visibility: visible;
@@ -350,15 +361,16 @@
     bottom: 140px; 
 }
 
-#remove_expense-button {
+#edit_expense-button {
     bottom: 200px;
 }
 
-#remove_incoming-button {
+#edit_incoming-button {
     bottom: 260px;
 }
 
 .new-button::before,
+.edit-button::before,
 .remove-button::before {
     content: attr(data-tooltip);
     position: absolute;
@@ -375,6 +387,7 @@
 }
 
 .new-button:hover::before,
+.edit-button:hover::before,
 .remove-button:hover::before {
     opacity: 1;
     visibility: visible;

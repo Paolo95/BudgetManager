@@ -44,11 +44,11 @@
                     </ul>
                 </li>
 
-                <li class="menu-item {{ request()->is('dashboard/new_incoming') ? 'active' : '' }}">
-                    <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link">
+                <li class="menu-item ">
+                    <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/incomings/*') ? 'active' : '' }}">
                         <div class="flex w-auto sidebar-navbar-div">
                             <div class="w-7">
-                                <i class="sidebar-icon fas fa-euro-sign"></i>
+                                <i class="sidebar-icon fa-solid fa-sack-dollar"></i>
                             </div>
                             <div>
                                 <span>Gestione Entrate</span>
@@ -57,23 +57,23 @@
                     </a>
                     <ul class="submenu hidden">
                         <li>
-                            <a href="/dashboard/incomings/new_incoming" class="block py-2 px-4">
+                            <a href="/dashboard/incomings/new_incoming" class="block py-2 px-4 {{ request()->is('dashboard/incomings/new_incoming') ? 'active' : '' }}">
                                 Inserisci Entrata
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard/incomings/edit_incoming" class="block py-2 px-4">
+                            <a href="/dashboard/incomings/edit_incoming" class="block py-2 px-4 {{ request()->is('dashboard/incomings/edit_incoming') ? 'active' : '' }}">
                                 Modifica Entrata
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="menu-item {{ request()->is('dashboard/new_expense') ? 'active' : '' }}">
-                    <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link">
+                <li class="menu-item ">
+                    <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/deadlines/*') ? 'active' : '' }}">
                         <div class="flex w-auto sidebar-navbar-div">
                             <div class="w-7">
-                                <i class="sidebar-icon fas fa-euro-sign"></i>
+                                <i class="sidebar-icon fa-regular fa-calendar"></i>
                             </div>
                             <div>
                                 <span>Gestione Scadenze</span>
@@ -82,23 +82,23 @@
                     </a>
                     <ul class="submenu hidden">
                         <li>
-                            <a href="/dashboard/deadlines/new_deadline" class="block py-2 px-4">
+                            <a href="/dashboard/deadlines/new_deadline" class="block py-2 px-4 {{ request()->is('dashboard/deadlines/new_deadline') ? 'active' : '' }}">
                                 Inserisci Scadenza
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard/deadlines/edit_deadline" class="block py-2 px-4">
+                            <a href="/dashboard/deadlines/edit_deadline" class="block py-2 px-4 {{ request()->is('dashboard/deadlines/edit_deadline') ? 'active' : '' }}">
                                 Modifica Scadenza
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="menu-item {{ request()->is('dashboard/new_expense') ? 'active' : '' }}">
-                    <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link">
+                <li class="menu-item ">
+                    <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/creditDebits/*') ? 'active' : '' }}">
                         <div class="flex w-auto sidebar-navbar-div">
                             <div class="w-7">
-                                <i class="sidebar-icon fas fa-euro-sign"></i>
+                                <i class="sidebar-icon fa-solid fa-hand-holding-dollar"></i>
                             </div>
                             <div>
                                 <span>Gestione Crediti/Debiti</span>
@@ -107,12 +107,12 @@
                     </a>
                     <ul class="submenu hidden">
                         <li>
-                            <a href="/dashboard/creditDebits/new_creditDebit" class="block py-2 px-4">
+                            <a href="/dashboard/creditDebits/new_creditDebit" class="block py-2 px-4 {{ request()->is('dashboard/creditDebits/new_creditDebit') ? 'active' : '' }}">
                                 Inserisci Credito/Debito
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard/creditDebits/edit_creditDebit" class="block py-2 px-4">
+                            <a href="/dashboard/creditDebits/edit_creditDebit" class="block py-2 px-4 {{ request()->is('dashboard/creditDebits/edit_creditDebit') ? 'active' : '' }}">
                                 Modifica Credito/Debito
                             </a>
                         </li>
@@ -120,11 +120,11 @@
                 </li>
 
                 
-                <li class="menu-item {{ request()->is('dashboard/new_expense') ? 'active' : '' }}">
-                    <a href="/dashboard/summary" class="block py-2 px-4 main-menu-link">
+                <li class="menu-item ">
+                    <a href="/dashboard/summary" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/summary') ? 'active' : '' }}">
                         <div class="flex w-auto sidebar-navbar-div">
                             <div class="w-7">
-                                <i class="sidebar-icon fas fa-euro-sign"></i>
+                                <i class="sidebar-icon fa-solid fa-retweet"></i>
                             </div>
                             <div>
                                 <span>Riassunto Anno</span>
