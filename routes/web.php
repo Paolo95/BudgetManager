@@ -48,6 +48,5 @@ Route::get('/dashboard/creditDebits/edit_creditDebit', [DashboardController::cla
 
 Route::get('/dashboard/summary', [DashboardController::class, 'summary'])->middleware('auth');
 
-
 Route::redirect('/dashboard', '/dashboard/home');
 

@@ -8,12 +8,31 @@ use Illuminate\Http\Request;
 
 class UserToDoController extends Controller
 {
-    public function getUserToDo()
+    public function getUserToDo(String $selectedMonth)
     {
+
+        // Array mapping Italian month names to their corresponding month numbers
+        $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        // Convert the selected month name to its corresponding month number
+        $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
 
         $userToDo = UserTodo::select('id', 'title', 'amount', 'isDone')
                                     ->where('user_id', auth()->id())
-                                    ->whereMonth('date', (int) now()->format('m'))
+                                    ->whereMonth('date', $monthNumber)
                                     ->get();
 
         return $userToDo;

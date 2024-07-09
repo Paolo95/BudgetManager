@@ -9,12 +9,30 @@ use Illuminate\Http\Request;
 
 class CreditDebitController extends Controller
 {
-    public function userCreditDebitOnLastMonth()
+    public function userCreditDebitOnMonth(String $selectedMonth)
     {
-        
+         // Array mapping Italian month names to their corresponding month numbers
+         $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        // Convert the selected month name to its corresponding month number
+        $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
+
         $userCreditDebitOnLastMonth = CreditDebit::select('date', 'type', 'description' ,'amount')
                                                     ->where('user_id', auth()->id())
-                                                    ->whereMonth('date', (int) now()->format('m'))
+                                                    ->whereMonth('date', $monthNumber)
                                                     ->orderBy('amount', 'desc')
                                                     ->get();
      

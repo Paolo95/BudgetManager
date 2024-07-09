@@ -27,6 +27,11 @@
     width: 100%;
 }
 
+.dashboard-header form{
+    display: flex;
+    gap: 20px;
+}
+
 .dashboard-header a {
     margin-left: auto; 
 }

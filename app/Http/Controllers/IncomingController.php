@@ -10,13 +10,33 @@ use Carbon\Carbon;
 
 class IncomingController extends Controller
 {
-    public function userTotalIncomingsOnLastMount(): float
+    public function userTotalIncomingsOnMount(String $selectedMonth): float
     {
-        $userTotalIncomingsOnLastMount = Incoming::where('user_id', auth()->id())
-                                            ->whereMonth('date', (int) now()->format('m'))
+        // Array mapping Italian month names to their corresponding month numbers
+        $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        // Convert the selected month name to its corresponding month number
+        $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
+
+        // Query to get the user's total incomings for the specified month
+        $userTotalIncomingsOnMount = Incoming::where('user_id', auth()->id())
+                                            ->whereMonth('date', $monthNumber)
                                             ->sum('amount');
-        
-        return $userTotalIncomingsOnLastMount;
+
+        return $userTotalIncomingsOnMount;
     }
 
     public function newIncoming(Request $request)

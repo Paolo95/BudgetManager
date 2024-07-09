@@ -14,21 +14,59 @@ use function PHPUnit\Framework\isEmpty;
 
 class ExpenseController extends Controller
 {
-    public function userTotalExpensesOnLastMount(): float
+    public function userTotalExpensesOnMount(String $selectedMonth): float
     {
-        $userTotalExpensesOnLastMount = Expense::where('user_id', auth()->id())
-                                            ->whereMonth('date', (int) now()->format('m'))
+        // Array mapping Italian month names to their corresponding month numbers
+        $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        // Convert the selected month name to its corresponding month number
+        $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
+        
+        $userTotalExpensesOnMount = Expense::where('user_id', auth()->id())
+                                            ->whereMonth('date', $monthNumber)
                                             ->sum('amount');
-        return $userTotalExpensesOnLastMount;
+        return $userTotalExpensesOnMount;
     }
 
-    public function usrExpPrimaryCategoryLastMounthPercLists()
+    public function usrExpPrimaryCategoryMounthPercLists(String $selectedMonth)
     {
+
+         // Array mapping Italian month names to their corresponding month numbers
+         $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        // Convert the selected month name to its corresponding month number
+        $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
         
-        $userExpensesByCategoryOnLastMonth = Expense::select('type', DB::raw('SUM(amount) as total_amount'))
+        $usrExpPrimaryCategoryMounthPercLists = Expense::select('type', DB::raw('SUM(amount) as total_amount'))
                                                     ->where('user_id', auth()->id())
                                                     ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
-                                                    ->whereMonth('expenses.date', (int) now()->format('m'))
+                                                    ->whereMonth('expenses.date', $monthNumber)
                                                     ->groupBy('type')
                                                     ->orderBy('total_amount', 'desc')
                                                     ->get();
@@ -42,7 +80,7 @@ class ExpenseController extends Controller
         $expansesAmounts = [];
 
       
-        foreach ($userExpensesByCategoryOnLastMonth as $expense) {
+        foreach ($usrExpPrimaryCategoryMounthPercLists as $expense) {
             $expansesNames[] = $expense->type;
             $expansesAmounts[] = ($expense->total_amount / $userTotalExpenses->total_amount) * 100;
         }
@@ -56,13 +94,32 @@ class ExpenseController extends Controller
         return $result;
     }
 
-    public function usrExpSecondaryCategoryLastMounthPercLists()
+    public function usrExpSecondaryCategoryMounthPercLists(String $selectedMonth)
     {
+
+         // Array mapping Italian month names to their corresponding month numbers
+         $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        // Convert the selected month name to its corresponding month number
+        $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
         
         $userExpensesByCategoryOnLastMonth = Expense::select('subtype', DB::raw('SUM(amount) as total_amount'))
                                                     ->where('user_id', auth()->id())
                                                     ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
-                                                    ->whereMonth('expenses.date', (int) now()->format('m'))
+                                                    ->whereMonth('expenses.date', $monthNumber)
                                                     ->groupBy('subtype')
                                                     ->orderBy('total_amount', 'desc')
                                                     ->get();
@@ -91,12 +148,30 @@ class ExpenseController extends Controller
         return $result;
     }
 
-    public function usrExpLastMounthCumulative()
+    public function usrExpMounthCumulative(String $selectedMonth)
     {
-        
+        // Array mapping Italian month names to their corresponding month numbers
+        $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        // Convert the selected month name to its corresponding month number
+        $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
+
         $userExpenses = Expense::select('date','amount')
                                     ->where('user_id', auth()->id())
-                                    ->whereMonth('expenses.date', (int) now()->format('m'))
+                                    ->whereMonth('expenses.date', $monthNumber)
                                     ->orderBy('expenses.date', 'asc')
                                     ->get();
         
@@ -122,13 +197,31 @@ class ExpenseController extends Controller
         return $result;
     }
 
-    public function usrTotExpByType()
+    public function usrTotExpByType(String $selectedMonth)
     {
+        // Array mapping Italian month names to their corresponding month numbers
+        $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        // Convert the selected month name to its corresponding month number
+        $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
         
         $usrTotExpByType = Expense::select('type', DB::raw('SUM(amount) as total_amount'))
                                     ->where('user_id', auth()->id())
                                     ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
-                                    ->whereMonth('expenses.date', (int) now()->format('m'))
+                                    ->whereMonth('expenses.date',  $monthNumber)
                                     ->groupBy('type')
                                     ->orderBy('total_amount', 'desc')
                                     ->get();
@@ -159,13 +252,31 @@ class ExpenseController extends Controller
         return $result;
     }
 
-    public function usrTotExpBySubType()
+    public function usrTotExpBySubType(String $selectedMonth)
     {
+         // Array mapping Italian month names to their corresponding month numbers
+         $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        // Convert the selected month name to its corresponding month number
+        $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
         
         $usrTotExpBySubType = Expense::select('subtype', DB::raw('SUM(amount) as total_amount'))
                                     ->where('user_id', auth()->id())
                                     ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
-                                    ->whereMonth('expenses.date', (int) now()->format('m'))
+                                    ->whereMonth('expenses.date', $monthNumber)
                                     ->groupBy('subtype')
                                     ->orderBy('total_amount', 'desc')
                                     ->get();
@@ -253,7 +364,7 @@ class ExpenseController extends Controller
 
 
         return redirect()->back()->with([
-            'expenses'      =>     $expenses,
+            'expenses'      =>   $expenses,
             'start_date'    =>   $startDate
         ]);
 

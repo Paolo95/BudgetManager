@@ -1,15 +1,33 @@
 <x-dashboard-layout>
 
+    @php
+
+     // Array of months in Italian
+        $months = [
+            "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
+            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+        ];
+    @endphp
+
     <x-slot name="title">Dashboard</x-slot>
 
         <div class='dashboard-div'>
 
             <div class="dashboard-resumeTab-div">
                 <div class="dashboard-header mt-4">
-                    <h1 class="dashboard-title">Riepilogo del mese di {{ $currentMounth }}</h1>
+                    <form method="GET" action="/dashboard/home">
+                        @csrf
+                        <h1 class="dashboard-title">Riepilogo del mese di</h1>
+                        <select name="dashMonthSelect" id="dashMonthSelect">
+                            <?php foreach ($months as $month): ?>
+                            <option value="<?= $month ?>" <?= $month === $selectedMonth ? 'selected' : '' ?>><?= $month ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                    </form>
                     <a href="/dashboard/summary">
                         <button>Riepilogo anno</button>
                     </a>
+                    
                 </div>
             </div>
 
@@ -18,16 +36,16 @@
                     <div class="summary-tab">
                         <div class="incomings-tab">
                             <h1>Totale Entrate</h1>
-                            <p>{{ number_format($userTotalIncomingsOnLastMount, 2, ',', '.') }} €</p>
+                            <p>{{ number_format($userTotalIncomingsOnMount, 2, ',', '.') }} €</p>
                         </div>
                         <div class="expenses-tab">
                             <h1>Totale Uscite</h1>
-                            <p>{{ number_format($userTotalExpensesOnLastMount, 2, ',', '.') }} €</p>
+                            <p>{{ number_format($userTotalExpensesOnMount, 2, ',', '.') }} €</p>
                         </div>
                         <div class="balance-tab">
                             <h1>Bilancio</h1>
-                            <p class={{ ($userTotalIncomingsOnLastMount - $userTotalExpensesOnLastMount) < 0 ? 
-                                'negative' : 'positive'}}>{{ number_format(($userTotalIncomingsOnLastMount - $userTotalExpensesOnLastMount), 2, ',','.') }} €</p>
+                            <p class={{ ($userTotalIncomingsOnMount - $userTotalExpensesOnMount) < 0 ? 
+                                'negative' : 'positive'}}>{{ number_format(($userTotalIncomingsOnMount - $userTotalExpensesOnMount), 2, ',','.') }} €</p>
                         </div>
                     </div>                    
                 </div>
@@ -43,9 +61,9 @@
                             </tr>
                             <tr>
                                 <td class="bold">Disponibili</td>
-                                <td class="center">{{ number_format($userTotalIncomingsOnLastMount * 0.5, 2, ',', '.') }} €</td>
-                                <td class="center">{{ number_format($userTotalIncomingsOnLastMount * 0.3, 2, ',', '.') }} €</td>
-                                <td class="center">{{ number_format($userTotalIncomingsOnLastMount * 0.2, 2, ',', '.') }} €</td>
+                                <td class="center">{{ number_format($userTotalIncomingsOnMount * 0.5, 2, ',', '.') }} €</td>
+                                <td class="center">{{ number_format($userTotalIncomingsOnMount * 0.3, 2, ',', '.') }} €</td>
+                                <td class="center">{{ number_format($userTotalIncomingsOnMount * 0.2, 2, ',', '.') }} €</td>
                             </tr>
                             <tr>
                                 <td class="bold">Spesi</td>
@@ -55,14 +73,14 @@
                             </tr>
                             <tr style="border-top: 1px solid;">
                                 <td class="bold">Saldo</td>
-                                <td class="center bold">{{ number_format($userTotalIncomingsOnLastMount * 0.5 - $usrTotExpByType['total_amount'][0], 2, ',', '.') }} €</td>
+                                <td class="center bold">{{ number_format($userTotalIncomingsOnMount * 0.5 - $usrTotExpByType['total_amount'][0], 2, ',', '.') }} €</td>
                                 <td class="center bold">
                                     {{
-                                        ($userTotalIncomingsOnLastMount * 0.5) - $usrTotExpByType['total_amount'][0] < 0 ? 
-                                            number_format((($userTotalIncomingsOnLastMount * 0.3) - $usrTotExpByType['total_amount'][1] + 
-                                                ($userTotalIncomingsOnLastMount * 0.5) - $usrTotExpByType['total_amount'][0]), 2, ',', '.')
+                                        ($userTotalIncomingsOnMount * 0.5) - $usrTotExpByType['total_amount'][0] < 0 ? 
+                                            number_format((($userTotalIncomingsOnMount * 0.3) - $usrTotExpByType['total_amount'][1] + 
+                                                ($userTotalIncomingsOnMount * 0.5) - $usrTotExpByType['total_amount'][0]), 2, ',', '.')
                                             : 
-                                            number_format((($userTotalIncomingsOnLastMount * 0.3) - $usrTotExpByType['total_amount'][1]), 2, ',', '.')
+                                            number_format((($userTotalIncomingsOnMount * 0.3) - $usrTotExpByType['total_amount'][1]), 2, ',', '.')
                                             
                                     }} €
                                 </td>
@@ -70,10 +88,10 @@
                                 
                                 <td class="center bold">
                                     {{
-                                        ($userTotalIncomingsOnLastMount * 0.5) - $usrTotExpByType['total_amount'][0] + (($userTotalIncomingsOnLastMount * 0.3) - $usrTotExpByType['total_amount'][1]) < 0 ? 
-                                            number_format((($userTotalIncomingsOnLastMount * 0.2) - $usrTotExpByType['total_amount'][2] + ($userTotalIncomingsOnLastMount * 0.3) - $usrTotExpByType['total_amount'][1] + ($userTotalIncomingsOnLastMount * 0.5) - $usrTotExpByType['total_amount'][0]), 2, ',', '.')
+                                        ($userTotalIncomingsOnMount * 0.5) - $usrTotExpByType['total_amount'][0] + (($userTotalIncomingsOnMount * 0.3) - $usrTotExpByType['total_amount'][1]) < 0 ? 
+                                            number_format((($userTotalIncomingsOnMount * 0.2) - $usrTotExpByType['total_amount'][2] + ($userTotalIncomingsOnMount * 0.3) - $usrTotExpByType['total_amount'][1] + ($userTotalIncomingsOnMount * 0.5) - $usrTotExpByType['total_amount'][0]), 2, ',', '.')
                                             : 
-                                            number_format((($userTotalIncomingsOnLastMount * 0.2) - $usrTotExpByType['total_amount'][2]), 2, ',', '.')
+                                            number_format((($userTotalIncomingsOnMount * 0.2) - $usrTotExpByType['total_amount'][2]), 2, ',', '.')
                                           
                                     }} €
                                 </td>
@@ -161,8 +179,8 @@
                     <script>
                         const ctxExpPrimary = document.getElementById('chartPrimaryExpensesDistribution');
                     
-                        const labelsExpPrimary = {!! json_encode($usrExpPrimaryCategoryLastMounthPercLists['labels'])!!};
-                        const dataExpPrimary = {!! json_encode($usrExpPrimaryCategoryLastMounthPercLists['total_amount'])!!};
+                        const labelsExpPrimary = {!! json_encode($usrExpPrimaryCategoryMounthPercLists['labels'])!!};
+                        const dataExpPrimary = {!! json_encode($usrExpPrimaryCategoryMounthPercLists['total_amount'])!!};
                         
                         new Chart(ctxExpPrimary, {
                             type: 'pie',
@@ -205,8 +223,8 @@
                     <script>
                         const ctxExpSecondary = document.getElementById('chartSecondaryExpensesDistribution');
                     
-                        const labelsExpSeondary = {!! json_encode($usrExpSecondaryCategoryLastMounthPercLists['labels'])!!};
-                        const dataExpSecondary = {!! json_encode($usrExpSecondaryCategoryLastMounthPercLists['total_amount'])!!};
+                        const labelsExpSeondary = {!! json_encode($usrExpSecondaryCategoryMounthPercLists['labels'])!!};
+                        const dataExpSecondary = {!! json_encode($usrExpSecondaryCategoryMounthPercLists['total_amount'])!!};
                         
                         new Chart(ctxExpSecondary, {
                             type: 'pie',
@@ -249,8 +267,8 @@
                     <script>
                         const ctxLineChart = document.getElementById('lineChartExpenses').getContext('2d');;
                     
-                        const labelsLineChart = {!! json_encode($usrExpLastMounthCumulative['day'])!!};
-                        const dataLinechart = {!! json_encode($usrExpLastMounthCumulative['cumulative_sum'])!!};
+                        const labelsLineChart = {!! json_encode($usrExpMounthCumulative['day'])!!};
+                        const dataLinechart = {!! json_encode($usrExpMounthCumulative['cumulative_sum'])!!};
                         
                         new Chart(ctxLineChart, {
                             type: 'line',
@@ -313,7 +331,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($userCreditDebitOnLastMonth as $index)
+                                @foreach ($userCreditDebitOnMonth as $index)
                                 <tr>
                                     <td>{{ \Carbon\Carbon::parse($index->date)->format('d-m-Y') }}</td>
                                     <td class={{ ($index->type === 'Debito') ? "tableDataNegativeStyle" : "tableDataPositiveStyle" }}>{{ $index->type }}</td>    
@@ -338,5 +356,8 @@
             
         
         
+    @push('scripts')
+        @vite('resources/js/dashboard/dashSelect.js')
+    @endpush
 
 </x-dashboard-layout>

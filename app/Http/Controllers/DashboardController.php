@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -13,49 +13,51 @@ class DashboardController extends Controller
         return view('home');
     }
 
-    public function dashboard() {
-
+    public function dashboard(Request $request) {
+         
+        $selectedMonth = $request->input('dashMonthSelect', ucfirst(Carbon::now()->locale('it_IT')->translatedFormat('F')));
+        
         $incomingController = new IncomingController();
-        $userTotalIncomingsOnLastMount = $incomingController->userTotalIncomingsOnLastMount();
+        $userTotalIncomingsOnMount = $incomingController->userTotalIncomingsOnMount($selectedMonth);
 
         $expenseController = new ExpenseController();
-        $userTotalExpensesOnLastMount = $expenseController->userTotalExpensesOnLastMount();
-        $usrExpPrimaryCategoryLastMounthPercLists = $expenseController->usrExpPrimaryCategoryLastMounthPercLists();
+        $userTotalExpensesOnMount = $expenseController->userTotalExpensesOnMount($selectedMonth);
 
-        $usrExpSecondaryCategoryLastMounthPercLists = $expenseController->usrExpSecondaryCategoryLastMounthPercLists();
+        $usrExpPrimaryCategoryMounthPercLists = $expenseController->usrExpPrimaryCategoryMounthPercLists($selectedMonth);
 
-        $usrExpLastMounthCumulative = $expenseController->usrExpLastMounthCumulative();
+        $usrExpSecondaryCategoryMounthPercLists = $expenseController->usrExpSecondaryCategoryMounthPercLists($selectedMonth);
 
-        $usrTotExpByType = $expenseController->usrTotExpByType();
+        $usrExpMounthCumulative = $expenseController->usrExpMounthCumulative($selectedMonth);
 
-        $usrTotExpBySubType = $expenseController->usrTotExpBySubType();
+        $usrTotExpByType = $expenseController->usrTotExpByType($selectedMonth);
+
+        $usrTotExpBySubType = $expenseController->usrTotExpBySubType($selectedMonth);
 
         $incomingExpenseController = new IncomingExpenseController();
-        $incomingExpenseUnion = $incomingExpenseController->incomingExpenseUnion();
+        $incomingExpenseUnion = $incomingExpenseController->incomingExpenseUnion($selectedMonth);
 
         $userToDoController = new UserToDoController();
-        $userToDo = $userToDoController->getUserToDo();
+        $userToDo = $userToDoController->getUserToDo($selectedMonth);
         
-        $currentMounth = ucfirst(Carbon::now()->locale('it_IT')->translatedFormat('F'));
-
         $creditDebitController = new CreditDebitController();
-        $userCreditDebitOnLastMonth = $creditDebitController->userCreditDebitOnLastMonth();
+        $userCreditDebitOnMonth = $creditDebitController->userCreditDebitOnMonth($selectedMonth);
      
-        return view('pages.dashboard', 
-        [
-            'userTotalIncomingsOnLastMount'                             => $userTotalIncomingsOnLastMount,
-            'userTotalExpensesOnLastMount'                              => $userTotalExpensesOnLastMount,
-            'currentMounth'                                             => $currentMounth,
+        return view('pages.dashboard')->with([
+
+            'selectedMonth'                                             => $selectedMonth,
+            'userTotalIncomingsOnMount'                                 => $userTotalIncomingsOnMount,
+            'userTotalExpensesOnMount'                                  => $userTotalExpensesOnMount,
             'incomingExpenseUnion'                                      => $incomingExpenseUnion,
             'userToDo'                                                  => $userToDo,
-            'usrExpPrimaryCategoryLastMounthPercLists'                  => $usrExpPrimaryCategoryLastMounthPercLists,
-            'usrExpSecondaryCategoryLastMounthPercLists'                => $usrExpSecondaryCategoryLastMounthPercLists,
-            'usrExpLastMounthCumulative'                                => $usrExpLastMounthCumulative,
+            'usrExpPrimaryCategoryMounthPercLists'                      => $usrExpPrimaryCategoryMounthPercLists,
+            'usrExpSecondaryCategoryMounthPercLists'                    => $usrExpSecondaryCategoryMounthPercLists,
+            'usrExpMounthCumulative'                                    => $usrExpMounthCumulative,
             'usrTotExpByType'                                           => $usrTotExpByType,
             'usrTotExpBySubType'                                        => $usrTotExpBySubType,
-            'userCreditDebitOnLastMonth'                                => $userCreditDebitOnLastMonth
+            'userCreditDebitOnMonth'                                    => $userCreditDebitOnMonth
         ]);
-    }
+    
+    } 
 
     public function insertExpense() {
         
