@@ -16,35 +16,43 @@ class DashboardController extends Controller
     public function dashboard(Request $request) {
          
         $selectedMonth = $request->input('dashMonthSelect', ucfirst(Carbon::now()->locale('it_IT')->translatedFormat('F')));
+
+        $selectedYear = (int) $request->input('dashYearSelect', Carbon::now()->year);
         
         $incomingController = new IncomingController();
-        $userTotalIncomingsOnMount = $incomingController->userTotalIncomingsOnMount($selectedMonth);
+        $userTotalIncomingsOnMount = $incomingController->userTotalIncomingsOnMount($selectedMonth, $selectedYear);
 
         $expenseController = new ExpenseController();
-        $userTotalExpensesOnMount = $expenseController->userTotalExpensesOnMount($selectedMonth);
+        $userTotalExpensesOnMount = $expenseController->userTotalExpensesOnMount($selectedMonth, $selectedYear);
 
-        $usrExpPrimaryCategoryMounthPercLists = $expenseController->usrExpPrimaryCategoryMounthPercLists($selectedMonth);
+        $usrExpPrimaryCategoryMounthPercLists = $expenseController->usrExpPrimaryCategoryMounthPercLists($selectedMonth, $selectedYear);
 
-        $usrExpSecondaryCategoryMounthPercLists = $expenseController->usrExpSecondaryCategoryMounthPercLists($selectedMonth);
+        $usrExpSecondaryCategoryMounthPercLists = $expenseController->usrExpSecondaryCategoryMounthPercLists($selectedMonth, $selectedYear);
 
-        $usrExpMounthCumulative = $expenseController->usrExpMounthCumulative($selectedMonth);
+        $usrExpMounthCumulative = $expenseController->usrExpMounthCumulative($selectedMonth, $selectedYear);
 
-        $usrTotExpByType = $expenseController->usrTotExpByType($selectedMonth);
+        $usrTotExpByType = $expenseController->usrTotExpByType($selectedMonth, $selectedYear);
 
-        $usrTotExpBySubType = $expenseController->usrTotExpBySubType($selectedMonth);
+        $usrTotExpBySubType = $expenseController->usrTotExpBySubType($selectedMonth, $selectedYear);
 
         $incomingExpenseController = new IncomingExpenseController();
-        $incomingExpenseUnion = $incomingExpenseController->incomingExpenseUnion($selectedMonth);
+        $incomingExpenseUnion = $incomingExpenseController->incomingExpenseUnion($selectedMonth, $selectedYear);
+
+        $availableYears  = $incomingExpenseController->availableYears();
+        $availableMonths = $incomingExpenseController->availableMonths($selectedYear);
 
         $userToDoController = new UserToDoController();
-        $userToDo = $userToDoController->getUserToDo($selectedMonth);
+        $userToDo = $userToDoController->getUserToDo($selectedMonth, $selectedYear);
         
         $creditDebitController = new CreditDebitController();
-        $userCreditDebitOnMonth = $creditDebitController->userCreditDebitOnMonth($selectedMonth);
+        $userCreditDebitOnMonth = $creditDebitController->userCreditDebitOnMonth($selectedMonth, $selectedYear);
      
         return view('pages.dashboard')->with([
 
             'selectedMonth'                                             => $selectedMonth,
+            'selectedYear'                                              => $selectedYear,
+            'availableYears'                                            => $availableYears,
+            'availableMonths'                                           => $availableMonths,
             'userTotalIncomingsOnMount'                                 => $userTotalIncomingsOnMount,
             'userTotalExpensesOnMount'                                  => $userTotalExpensesOnMount,
             'incomingExpenseUnion'                                      => $incomingExpenseUnion,
@@ -92,8 +100,30 @@ class DashboardController extends Controller
         return view('pages.edit_creditDebit');
     }
 
-    public function summary() {
-        return view('pages.summary');
+    public function summary(Request $request) {
+
+        $selectedYear = (int) $request->input('summaryYearSelect', Carbon::now()->year);
+
+        $expenseController = new ExpenseController();
+
+        $incomingExpenseController = new IncomingExpenseController();
+
+        $usrExpPrimaryCategoryAnnuallyPercLists = $expenseController->usrExpPrimaryCategoryAnnuallyPercLists($selectedYear);
+        $usrExpSecondaryCategoryAnnuallyPercLists = $expenseController->usrExpSecondaryCategoryAnnuallyPercLists($selectedYear);
+
+        $usrExpMounthCumulativeSummary = $expenseController->usrExpMounthCumulativeSummary($selectedYear);
+
+        $availableYears = $incomingExpenseController->availableYears();
+    
+
+        return view('pages.summary')->with([
+            'usrExpPrimaryCategoryAnnuallyPercLists'    =>  $usrExpPrimaryCategoryAnnuallyPercLists,
+            'usrExpSecondaryCategoryAnnuallyPercLists'  =>  $usrExpSecondaryCategoryAnnuallyPercLists,
+            'usrExpMounthCumulativeSummary'             =>  $usrExpMounthCumulativeSummary,
+            'availableYears'                            =>  $availableYears,
+            'selectedYear'                              =>  $selectedYear,
+        ]);
+
     }
 
 }

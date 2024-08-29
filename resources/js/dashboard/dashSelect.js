@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    const selectElement = document.getElementById('dashMonthSelect');
-    if (selectElement) {
-        selectElement.addEventListener('change', function() {
+    const dashSubmitButton = document.getElementById('dashSubmitButton');
+    if (dashSubmitButton) {
+        dashSubmitButton.addEventListener('click', function() {
             this.form.submit();
         });
 
     }
+    
 });

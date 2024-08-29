@@ -448,6 +448,21 @@
 
 /* Add responsive design for smaller screens */
 @media (max-width: 1300px) {
+
+    #dashMonthSelect{
+        height: 40px;
+    }
+
+    .dashboard-header .dashboard-title{
+        font-size: 15px;
+    }
+
+    .dashboard-header form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .dashboard-div {
         flex-direction: column;
         gap: 15px;

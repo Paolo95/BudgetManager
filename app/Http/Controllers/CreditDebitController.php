@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CreditDebitController extends Controller
 {
-    public function userCreditDebitOnMonth(String $selectedMonth)
+    public function userCreditDebitOnMonth(String $selectedMonth, int $selectedYear)
     {
          // Array mapping Italian month names to their corresponding month numbers
          $monthMap = [
@@ -33,6 +33,7 @@ class CreditDebitController extends Controller
         $userCreditDebitOnLastMonth = CreditDebit::select('date', 'type', 'description' ,'amount')
                                                     ->where('user_id', auth()->id())
                                                     ->whereMonth('date', $monthNumber)
+                                                    ->whereYear('date', $selectedYear)
                                                     ->orderBy('amount', 'desc')
                                                     ->get();
      

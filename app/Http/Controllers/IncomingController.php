@@ -10,8 +10,9 @@ use Carbon\Carbon;
 
 class IncomingController extends Controller
 {
-    public function userTotalIncomingsOnMount(String $selectedMonth): float
+    public function userTotalIncomingsOnMount(String $selectedMonth, int $selectedYear): float
     {
+        
         // Array mapping Italian month names to their corresponding month numbers
         $monthMap = [
             "Gennaio" => 1,
@@ -34,6 +35,7 @@ class IncomingController extends Controller
         // Query to get the user's total incomings for the specified month
         $userTotalIncomingsOnMount = Incoming::where('user_id', auth()->id())
                                             ->whereMonth('date', $monthNumber)
+                                            ->whereYear('date', $selectedYear)
                                             ->sum('amount');
 
         return $userTotalIncomingsOnMount;

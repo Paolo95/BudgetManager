@@ -14,7 +14,7 @@ use function PHPUnit\Framework\isEmpty;
 
 class ExpenseController extends Controller
 {
-    public function userTotalExpensesOnMount(String $selectedMonth): float
+    public function userTotalExpensesOnMount(String $selectedMonth, int $selectedYear): float
     {
         // Array mapping Italian month names to their corresponding month numbers
         $monthMap = [
@@ -31,17 +31,19 @@ class ExpenseController extends Controller
             "Novembre" => 11,
             "Dicembre" => 12,
         ];
-
+        
+        
         // Convert the selected month name to its corresponding month number
         $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
         
         $userTotalExpensesOnMount = Expense::where('user_id', auth()->id())
                                             ->whereMonth('date', $monthNumber)
+                                            ->whereYear('date', $selectedYear)
                                             ->sum('amount');
         return $userTotalExpensesOnMount;
     }
 
-    public function usrExpPrimaryCategoryMounthPercLists(String $selectedMonth)
+    public function usrExpPrimaryCategoryMounthPercLists(String $selectedMonth, int $selectedYear)
     {
 
          // Array mapping Italian month names to their corresponding month numbers
@@ -67,12 +69,15 @@ class ExpenseController extends Controller
                                                     ->where('user_id', auth()->id())
                                                     ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
                                                     ->whereMonth('expenses.date', $monthNumber)
+                                                    ->whereYear('expenses.date', $selectedYear)
                                                     ->groupBy('type')
                                                     ->orderBy('total_amount', 'desc')
                                                     ->get();
      
         $userTotalExpenses = Expense::select(DB::raw('SUM(amount) as total_amount'))
                                                 ->where('user_id', auth()->id())
+                                                ->whereMonth('expenses.date', $monthNumber)
+                                                ->whereYear('date', $selectedYear)
                                                 ->first();
 
        
@@ -94,7 +99,77 @@ class ExpenseController extends Controller
         return $result;
     }
 
-    public function usrExpSecondaryCategoryMounthPercLists(String $selectedMonth)
+    public function usrExpPrimaryCategoryAnnuallyPercLists(int $selectedYear)
+    {
+
+        $usrExpPrimaryCategoryAnnuallyPercLists = Expense::select('expense_categories.type', DB::raw('SUM(expenses.amount) as total_amount'))
+                                                    ->where('user_id', auth()->id())
+                                                    ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
+                                                    ->whereYear('expenses.date', $selectedYear)
+                                                    ->groupBy('expense_categories.type')
+                                                    ->orderBy('total_amount', 'desc')
+                                                    ->get();
+     
+        $userTotalExpenses = Expense::select(DB::raw('SUM(amount) as total_amount'))
+                                                ->where('user_id', auth()->id())
+                                                ->whereYear('expenses.date', $selectedYear)
+                                                ->first();
+
+       
+        $expansesNames = [];
+        $expansesAmounts = [];
+
+      
+        foreach ($usrExpPrimaryCategoryAnnuallyPercLists as $expense) {
+            $expansesNames[] = $expense->type;
+            $expansesAmounts[] = ($expense->total_amount / $userTotalExpenses->total_amount) * 100;
+        }
+
+        $result = [
+            'labels' => $expansesNames,
+            'total_amount' => $expansesAmounts,
+        ];
+
+        
+        return $result;
+    }
+
+    public function usrExpSecondaryCategoryAnnuallyPercLists(int $selectedYear)
+    {
+
+        $usrExpSecondaryCategoryAnnuallyPercLists = Expense::select('expense_categories.subtype', DB::raw('SUM(expenses.amount) as total_amount'))
+                                                    ->where('user_id', auth()->id())
+                                                    ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
+                                                    ->whereYear('expenses.date', $selectedYear)
+                                                    ->groupBy('expense_categories.subtype')
+                                                    ->orderBy('total_amount', 'desc')
+                                                    ->get();
+     
+        $userTotalExpenses = Expense::select(DB::raw('SUM(amount) as total_amount'))
+                                                ->where('user_id', auth()->id())
+                                                ->whereYear('expenses.date', $selectedYear)
+                                                ->first();
+
+       
+        $expansesNames = [];
+        $expansesAmounts = [];
+
+      
+        foreach ($usrExpSecondaryCategoryAnnuallyPercLists as $expense) {
+            $expansesNames[] = $expense->subtype;
+            $expansesAmounts[] = ($expense->total_amount / $userTotalExpenses->total_amount) * 100;
+        }
+
+        $result = [
+            'labels' => $expansesNames,
+            'total_amount' => $expansesAmounts,
+        ];
+
+        
+        return $result;
+    }
+
+    public function usrExpSecondaryCategoryMounthPercLists(String $selectedMonth, int $selectedYear)
     {
 
          // Array mapping Italian month names to their corresponding month numbers
@@ -120,12 +195,14 @@ class ExpenseController extends Controller
                                                     ->where('user_id', auth()->id())
                                                     ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
                                                     ->whereMonth('expenses.date', $monthNumber)
+                                                    ->whereYear('expenses.date', $selectedYear)
                                                     ->groupBy('subtype')
                                                     ->orderBy('total_amount', 'desc')
                                                     ->get();
        
         $userTotalExpenses = Expense::select(DB::raw('SUM(amount) as total_amount'))
                                                 ->where('user_id', auth()->id())
+                                                ->whereYear('date', $selectedYear)
                                                 ->first();
 
        
@@ -148,7 +225,7 @@ class ExpenseController extends Controller
         return $result;
     }
 
-    public function usrExpMounthCumulative(String $selectedMonth)
+    public function usrExpMounthCumulative(String $selectedMonth, int $selectedYear)
     {
         // Array mapping Italian month names to their corresponding month numbers
         $monthMap = [
@@ -172,6 +249,7 @@ class ExpenseController extends Controller
         $userExpenses = Expense::select('date','amount')
                                     ->where('user_id', auth()->id())
                                     ->whereMonth('expenses.date', $monthNumber)
+                                    ->whereYear('expenses.date', $selectedYear)
                                     ->orderBy('expenses.date', 'asc')
                                     ->get();
         
@@ -197,7 +275,54 @@ class ExpenseController extends Controller
         return $result;
     }
 
-    public function usrTotExpByType(String $selectedMonth)
+    public function usrExpMounthCumulativeSummary(String $selectedYear)
+    {
+        // Array mapping Italian month names to their corresponding month numbers
+        $monthMap = [
+            "Gennaio" => 1,
+            "Febbraio" => 2,
+            "Marzo" => 3,
+            "Aprile" => 4,
+            "Maggio" => 5,
+            "Giugno" => 6,
+            "Luglio" => 7,
+            "Agosto" => 8,
+            "Settembre" => 9,
+            "Ottobre" => 10,
+            "Novembre" => 11,
+            "Dicembre" => 12,
+        ];
+
+        
+        $userExpenses = Expense::select('date','amount')
+                                    ->where('user_id', auth()->id())
+                                    ->whereYear('expenses.date', $selectedYear)
+                                    ->orderBy('expenses.date', 'asc')
+                                    ->get();
+        
+        $cumSum = 0;               
+        
+        if ($userExpenses->isEmpty()) {
+            $expanseDays[] = null;
+            $expansesAmountsCumulative[] = $cumSum;
+        } else {
+            foreach ($userExpenses as $expense) {
+                $date = new DateTime($expense->date);
+                $expanseDays[] = $date->format('d');
+                $cumSum += $expense->amount;
+                $expansesAmountsCumulative[] = $cumSum;
+            }
+        }        
+
+        $result = [
+            'day' => $expanseDays,
+            'cumulative_sum' => $expansesAmountsCumulative,
+        ];
+      
+        return $result;
+    }
+
+    public function usrTotExpByType(String $selectedMonth, int $selectedYear)
     {
         // Array mapping Italian month names to their corresponding month numbers
         $monthMap = [
@@ -222,6 +347,7 @@ class ExpenseController extends Controller
                                     ->where('user_id', auth()->id())
                                     ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
                                     ->whereMonth('expenses.date',  $monthNumber)
+                                    ->whereYear('expenses.date', $selectedYear)
                                     ->groupBy('type')
                                     ->orderBy('total_amount', 'desc')
                                     ->get();
@@ -252,23 +378,10 @@ class ExpenseController extends Controller
         return $result;
     }
 
-    public function usrTotExpBySubType(String $selectedMonth)
+    public function usrTotExpBySubType(String $selectedMonth, int $selectedYear)
     {
-         // Array mapping Italian month names to their corresponding month numbers
-         $monthMap = [
-            "Gennaio" => 1,
-            "Febbraio" => 2,
-            "Marzo" => 3,
-            "Aprile" => 4,
-            "Maggio" => 5,
-            "Giugno" => 6,
-            "Luglio" => 7,
-            "Agosto" => 8,
-            "Settembre" => 9,
-            "Ottobre" => 10,
-            "Novembre" => 11,
-            "Dicembre" => 12,
-        ];
+        // Array mapping Italian month names to their corresponding month numbers
+ 
 
         // Convert the selected month name to its corresponding month number
         $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
@@ -277,6 +390,7 @@ class ExpenseController extends Controller
                                     ->where('user_id', auth()->id())
                                     ->join('expense_categories', 'expenses.expense_category_id', '=', 'expense_categories.id')
                                     ->whereMonth('expenses.date', $monthNumber)
+                                    ->whereYear('expenses.date', $selectedYear)
                                     ->groupBy('subtype')
                                     ->orderBy('total_amount', 'desc')
                                     ->get();
@@ -445,6 +559,8 @@ class ExpenseController extends Controller
         // Return a response, such as a redirect or a JSON response
         return response()->json(['message' => 'Expense deleted successfully'], 200);
     }
+
+    
 
 
 

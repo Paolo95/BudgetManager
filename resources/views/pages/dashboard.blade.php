@@ -7,6 +7,7 @@
             "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
             "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
         ];
+
     @endphp
 
     <x-slot name="title">Dashboard</x-slot>
@@ -14,22 +15,31 @@
         <div class='dashboard-div'>
 
             <div class="dashboard-resumeTab-div">
+                
                 <div class="dashboard-header mt-4">
                     <form method="GET" action="/dashboard/home">
                         @csrf
-                        <h1 class="dashboard-title">Riepilogo del mese di</h1>
                         <select name="dashMonthSelect" id="dashMonthSelect">
-                            <?php foreach ($months as $month): ?>
-                            <option value="<?= $month ?>" <?= $month === $selectedMonth ? 'selected' : '' ?>><?= $month ?></option>
-                        <?php endforeach; ?>
+                            @foreach ($months as $month)
+                                <option value="{{ $month }}" {{ $month === $selectedMonth ? 'selected' : '' }}>{{ $month }}</option>
+                            @endforeach
                         </select>
+                        <select name="dashYearSelect" id="dashYearSelect">
+                            @foreach($availableYears as $year)
+                                <option value="{{ $year }}" {{ $year === $selectedYear ? 'selected' : '' }}>{{ $year }}</option>
+                            @endforeach
+                        </select>
+                        <button id="dashSubmitButton">Cerca</button>
                     </form>
                     <a href="/dashboard/summary">
                         <button>Riepilogo anno</button>
                     </a>
-                    
+                
                 </div>
+                
             </div>
+
+            <h1 class="dashboard-title">Riepilogo del mese di {{$selectedMonth}} {{$selectedYear}}</h1>
 
             <div class="dashboard-resumeTab-div">
                 <div class="dashboard-tabs">

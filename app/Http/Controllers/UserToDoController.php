@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class UserToDoController extends Controller
 {
-    public function getUserToDo(String $selectedMonth)
+    public function getUserToDo(String $selectedMonth, int $selectedYear)
     {
 
         // Array mapping Italian month names to their corresponding month numbers
@@ -33,6 +33,7 @@ class UserToDoController extends Controller
         $userToDo = UserTodo::select('id', 'title', 'amount', 'isDone')
                                     ->where('user_id', auth()->id())
                                     ->whereMonth('date', $monthNumber)
+                                    ->whereYear('date', $selectedYear)
                                     ->get();
 
         return $userToDo;

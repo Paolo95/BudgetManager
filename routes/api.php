@@ -29,8 +29,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['web'])->group (function () {
     
-    Route::post('/dashboard/getMonthDashboard',                     [DashboardController::class, 'getMonthDashboard']);
-    
     Route::post('/updateToDo/{id}',                                 [UserToDoController::class, 'updateToDo']);
 
     Route::get('/expenses/getSubCategories/{categoria}',            [ExpenseCategoryController::class, 'expensesSubTypeListByCategory']);
