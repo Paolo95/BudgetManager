@@ -12,6 +12,7 @@
   @vite('resources/css/home.css')
   @vite('resources/css/dashboard.css')
   @vite('resources/css/navbar.css')
+  @vite('resources/css/summary.css')
   @vite('resources/css/forms/new-forms.css')
   @vite('resources/css/forms/edit-forms.css')
 

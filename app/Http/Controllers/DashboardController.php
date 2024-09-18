@@ -106,22 +106,38 @@ class DashboardController extends Controller
 
         $expenseController = new ExpenseController();
 
+        $incomingController = new IncomingController();
+
         $incomingExpenseController = new IncomingExpenseController();
+
+        $savingsController = new SavingController();
 
         $usrExpPrimaryCategoryAnnuallyPercLists = $expenseController->usrExpPrimaryCategoryAnnuallyPercLists($selectedYear);
         $usrExpSecondaryCategoryAnnuallyPercLists = $expenseController->usrExpSecondaryCategoryAnnuallyPercLists($selectedYear);
 
-        $usrExpMounthCumulativeSummary = $expenseController->usrExpMounthCumulativeSummary($selectedYear);
+        $usrExpMonthSummary = $expenseController->usrExpMonthSummary($selectedYear);
+        $usrIncMonthSummary = $incomingController->usrIncMonthSummary($selectedYear);
 
         $availableYears = $incomingExpenseController->availableYears();
+
+        $usrRatioMonthSummary = $incomingExpenseController->usrRatioMonthSummary($selectedYear);
+
+        $usrSavMonthSummary = $savingsController->usrSavMonthSummary($selectedYear);
+
+        $creditDebitController = new CreditDebitController();
+        $userCreditDebitOnYear = $creditDebitController->userCreditDebitOnYear($selectedYear);
     
 
         return view('pages.summary')->with([
             'usrExpPrimaryCategoryAnnuallyPercLists'    =>  $usrExpPrimaryCategoryAnnuallyPercLists,
             'usrExpSecondaryCategoryAnnuallyPercLists'  =>  $usrExpSecondaryCategoryAnnuallyPercLists,
-            'usrExpMounthCumulativeSummary'             =>  $usrExpMounthCumulativeSummary,
+            'usrExpMonthSummary'                        =>  $usrExpMonthSummary,
+            'usrIncMonthSummary'                        =>  $usrIncMonthSummary,
             'availableYears'                            =>  $availableYears,
             'selectedYear'                              =>  $selectedYear,
+            'userCreditDebitOnYear'                     =>  $userCreditDebitOnYear,
+            'usrSavMonthSummary'                        =>  $usrSavMonthSummary,
+            'usrRatioMonthSummary'                      =>  $usrRatioMonthSummary,
         ]);
 
     }

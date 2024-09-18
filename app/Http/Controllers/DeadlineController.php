@@ -140,4 +140,6 @@ class DeadlineController extends Controller
         return response()->json(['message' => 'Deadline deleted successfully'], 200);
     }
 
+    
+
 }

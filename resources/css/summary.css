@@ -1,0 +1,19 @@
+.dashboard-content .dashboard-graphs .lineChartSummary-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items:center; 
+    height: 100%;
+    width: 100%;
+}
+
+.dashboard-resumeTab-div .dashboard-tabs #expIncRatioTable{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.dashboard-resumeTab-div .dashboard-graphs #expIncRatioLine{
+    width: 100%;
+    height: 90%;
+}

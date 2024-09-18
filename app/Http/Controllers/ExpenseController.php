@@ -130,7 +130,6 @@ class ExpenseController extends Controller
             'total_amount' => $expansesAmounts,
         ];
 
-        
         return $result;
     }
 
@@ -246,11 +245,12 @@ class ExpenseController extends Controller
         // Convert the selected month name to its corresponding month number
         $monthNumber = $monthMap[$selectedMonth] ?? now()->format('m'); // Default to current month if not found
 
-        $userExpenses = Expense::select('date','amount')
+        $userExpenses = Expense::selectRaw('date, SUM(amount) as total_amount')
                                     ->where('user_id', auth()->id())
-                                    ->whereMonth('expenses.date', $monthNumber)
-                                    ->whereYear('expenses.date', $selectedYear)
-                                    ->orderBy('expenses.date', 'asc')
+                                    ->whereYear('date', $selectedYear)
+                                    ->whereMonth('date', $monthNumber)
+                                    ->groupBy('date')
+                                    ->orderBy('date','asc')
                                     ->get();
         
         $cumSum = 0;               
@@ -262,7 +262,7 @@ class ExpenseController extends Controller
             foreach ($userExpenses as $expense) {
                 $date = new DateTime($expense->date);
                 $expanseDays[] = $date->format('d');
-                $cumSum += $expense->amount;
+                $cumSum += $expense->total_amount;
                 $expansesAmountsCumulative[] = $cumSum;
             }
         }        
@@ -275,50 +275,51 @@ class ExpenseController extends Controller
         return $result;
     }
 
-    public function usrExpMounthCumulativeSummary(String $selectedYear)
+    public function usrExpMonthSummary(String $selectedYear)
     {
-        // Array mapping Italian month names to their corresponding month numbers
-        $monthMap = [
-            "Gennaio" => 1,
-            "Febbraio" => 2,
-            "Marzo" => 3,
-            "Aprile" => 4,
-            "Maggio" => 5,
-            "Giugno" => 6,
-            "Luglio" => 7,
-            "Agosto" => 8,
-            "Settembre" => 9,
-            "Ottobre" => 10,
-            "Novembre" => 11,
-            "Dicembre" => 12,
+
+         $monthMap = [
+            1   => "Gennaio",
+            2   => "Febbraio",
+            3   => "Marzo",
+            4   => "Aprile",
+            5   => "Maggio",
+            6   => "Giugno",
+            7   => "Luglio",
+            8   => "Agosto",
+            9   => "Settembre",
+            10  => "Ottobre",
+            11  => "Novembre",
+            12  => "Dicembre",
         ];
 
-        
-        $userExpenses = Expense::select('date','amount')
+
+        $months = array_fill(1, 12, 0);
+                
+        $userExpenses = Expense::selectRaw('MONTH(date) as month, SUM(amount) as total_amount')
                                     ->where('user_id', auth()->id())
-                                    ->whereYear('expenses.date', $selectedYear)
-                                    ->orderBy('expenses.date', 'asc')
+                                    ->whereYear('date', $selectedYear)
+                                    ->groupByRaw('MONTH(date)')
+                                    ->orderByRaw('MONTH(date) asc')
                                     ->get();
-        
-        $cumSum = 0;               
-        
-        if ($userExpenses->isEmpty()) {
-            $expanseDays[] = null;
-            $expansesAmountsCumulative[] = $cumSum;
-        } else {
-            foreach ($userExpenses as $expense) {
-                $date = new DateTime($expense->date);
-                $expanseDays[] = $date->format('d');
-                $cumSum += $expense->amount;
-                $expansesAmountsCumulative[] = $cumSum;
-            }
-        }        
+
+        $expansesAmounts = $months;
+       
+
+        foreach ($userExpenses as $expense) {
+            $expansesAmounts[$expense->month] = $expense->total_amount;
+        }
+
+        $monthNames = [];
+        foreach (array_keys($months) as $monthNumber) {
+            $monthNames[] = $monthMap[$monthNumber];
+        }
 
         $result = [
-            'day' => $expanseDays,
-            'cumulative_sum' => $expansesAmountsCumulative,
+            'month' => $monthNames,
+            'amount' => array_values($expansesAmounts),
         ];
-      
+
         return $result;
     }
 

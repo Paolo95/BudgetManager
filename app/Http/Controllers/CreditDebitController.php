@@ -40,6 +40,19 @@ class CreditDebitController extends Controller
        return $userCreditDebitOnLastMonth;
     }
 
+    public function userCreditDebitOnYear(int $selectedYear)
+    {
+    
+        $userCreditDebitOnYear = CreditDebit::select('date', 'type', 'description' ,'amount')
+                                                    ->where('user_id', auth()->id())
+                                                    ->whereYear('date', $selectedYear)
+                                                    ->orderBy('amount', 'desc')
+                                                    ->get();
+     
+       return $userCreditDebitOnYear;
+
+    }
+
     public function newCreditDebit(Request $request)
     {
       

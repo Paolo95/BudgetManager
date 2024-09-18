@@ -79,6 +79,7 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
+    
 }
 
 .dashboard-content .dashboard-graphs{
@@ -92,6 +93,8 @@
     justify-content: space-between;
     align-items: center;
 }
+
+
 
 .dashboard-content .dashboard-graphs .lineChart-div{
     display: flex;
@@ -485,11 +488,13 @@
         width: 100%;
     }
 
+
     .dashboard-content .dashboard-tabs .summary-tab {
         width: 100%;
         flex-direction: column;
         gap: 10px;
     }
+  
 
     .dashboard-content .dashboard-graphs {
         padding: 10px;

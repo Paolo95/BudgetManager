@@ -112,6 +112,74 @@ class IncomingExpenseController extends Controller
         return $availableMonths;
     }
 
+    public function usrRatioMonthSummary(String $selectedYear)
+    {
 
-  
+         $monthMap = [
+            1   => "Gennaio",
+            2   => "Febbraio",
+            3   => "Marzo",
+            4   => "Aprile",
+            5   => "Maggio",
+            6   => "Giugno",
+            7   => "Luglio",
+            8   => "Agosto",
+            9   => "Settembre",
+            10  => "Ottobre",
+            11  => "Novembre",
+            12  => "Dicembre",
+        ];
+
+
+        $months = array_fill(1, 12, 0);
+                
+        $userExpenses = Expense::selectRaw('MONTH(date) as month, SUM(amount) as total_amount')
+                                    ->where('user_id', auth()->id())
+                                    ->whereYear('date', $selectedYear)
+                                    ->groupByRaw('MONTH(date)')
+                                    ->orderByRaw('MONTH(date) asc')
+                                    ->get();
+        
+        $userIncomings = Incoming::selectRaw('MONTH(date) as month, SUM(amount) as total_amount')
+                                    ->where('user_id', auth()->id())
+                                    ->whereYear('incomings.date', $selectedYear)
+                                    ->groupByRaw('MONTH(date)')
+                                    ->orderByRaw('MONTH(date) asc')
+                                    ->get();
+
+        $expansesAmounts = $months;
+        $incomingsAmounts = $months;
+       
+
+        foreach ($userExpenses as $expense) {
+            $expansesAmounts[$expense->month] = $expense->total_amount;
+        }
+
+        foreach ($userIncomings as $incoming) {
+            $incomingsAmounts[$incoming->month] = $incoming->total_amount;
+        }
+
+        $monthNames = [];
+        foreach (array_keys($months) as $monthNumber) {
+            $monthNames[] = $monthMap[$monthNumber];
+        }
+
+        foreach (array_keys($months) as $monthNumber) {
+            if($incomingsAmounts[$monthNumber] === 0) {
+                $expIncRatio[$monthNumber] = 0;
+            }else{
+                $expIncRatio[$monthNumber] =  $expansesAmounts[$monthNumber]/$incomingsAmounts[$monthNumber];
+            }
+            
+        }
+
+        $result = [
+            'month' => $monthNames,
+            'amount' => array_values($expIncRatio),
+        ];
+
+        return $result;
+    }
+    
+
 }

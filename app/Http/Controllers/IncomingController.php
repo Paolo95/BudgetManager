@@ -7,6 +7,7 @@ use App\Models\Incoming;
 use App\Models\IncomingCategory;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DateTime;
 
 class IncomingController extends Controller
 {
@@ -177,5 +178,52 @@ class IncomingController extends Controller
     
         // Return a response, such as a redirect or a JSON response
         return response()->json(['message' => 'Incoming deleted successfully'], 200);
+    }
+
+    public function usrIncMonthSummary(String $selectedYear)
+    {
+
+        $monthMap = [
+            1   => "Gennaio",
+            2   => "Febbraio",
+            3   => "Marzo",
+            4   => "Aprile",
+            5   => "Maggio",
+            6   => "Giugno",
+            7   => "Luglio",
+            8   => "Agosto",
+            9   => "Settembre",
+            10  => "Ottobre",
+            11  => "Novembre",
+            12  => "Dicembre",
+        ];
+
+        $months = array_fill(1, 12, 0);
+
+        $userIncomings = Incoming::selectRaw('MONTH(date) as month, SUM(amount) as total_amount')
+                                    ->where('user_id', auth()->id())
+                                    ->whereYear('incomings.date', $selectedYear)
+                                    ->groupByRaw('MONTH(date)')
+                                    ->orderByRaw('MONTH(date) asc')
+                                    ->get();
+             
+        $incomingsAmounts = $months;
+
+        foreach ($userIncomings as $incoming) {
+            $incomingsAmounts[$incoming->month] = $incoming->total_amount;
+        }
+
+        $monthNames = [];
+        foreach (array_keys($months) as $monthNumber) {
+            $monthNames[] = $monthMap[$monthNumber];
+        }
+
+        $result = [
+            'month' => $monthNames,
+            'amount' => array_values($incomingsAmounts),
+        ];
+
+        return $result;
+      
     }
 }
