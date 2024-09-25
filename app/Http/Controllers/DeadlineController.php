@@ -33,7 +33,7 @@ class DeadlineController extends Controller
         
         
         if ($userDeadlines->isEmpty()) {
-            return response()->json(['message' => 'No deadlines found for this user.'], 200);
+            return [];
         }
 
         $result = [];

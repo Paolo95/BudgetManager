@@ -42,7 +42,8 @@
 }
 
 .search-form input[type="date"],
-.search-form button[type="submit"] {
+.search-form button[type="submit"],
+.search-form select {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;
