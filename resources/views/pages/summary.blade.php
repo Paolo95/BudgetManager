@@ -297,6 +297,30 @@
                 </script>
             </div>
         </div>
+
+        <div class="dashboard-resumeTab-div">
+            <div class="dashboard-graphs">
+                <div style="font-weight: bold">Debiti da recuperare</div>
+                <div class="dashboard-deadlines">
+                    @foreach ($userDeadlinesSummary as $deadline)
+                    <div class="deadline-container">      
+                        <div class="deadline-tab">
+                            <h2>{{$deadline['title']}}</h2>
+                            <div class="separator"></div>  
+                            <div class="deadline-subtab">
+                                <h2>Importo</h2>
+                                <p>{{number_format($deadline['amount'], 2,',','.')}} €</p>
+                                <h2>Rimanente</h2>
+                                <p>{{number_format($deadline['remaining'], 2,',','.')}} €</p>
+                                <h2>Completato</h2>
+                                <p>{{number_format($deadline['remaining']/$deadline['amount'], 2, ',','.')}} %</p>
+                            </div>
+                        </div>                    
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
         
     @push('scripts')
         @vite('resources/js/dashboard/summarySelect.js')

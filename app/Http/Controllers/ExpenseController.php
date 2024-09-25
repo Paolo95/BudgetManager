@@ -429,9 +429,9 @@ class ExpenseController extends Controller
             'amount' => 'required|numeric|min:0',
         ]);
         
-        $expenseCategoryController = new ExpenseCategoryController();
+        $expenseCategoryController = new ExpenseCategoryController();    
         $expenseCategoryID = $expenseCategoryController->findExpenseCategoryID($validatedData['type'], $validatedData['subtype']);
-    
+               
         // Create a new Expense instance
         $expense = new Expense();
         $expense->date = $validatedData['date'];

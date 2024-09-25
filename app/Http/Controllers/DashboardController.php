@@ -100,6 +100,14 @@ class DashboardController extends Controller
         return view('pages.edit_creditDebit');
     }
 
+    public function newCategory() {
+        return view('pages.new_category');
+    }
+
+    public function editCategory() {
+        return view('pages.edit_category');
+    }
+
     public function summary(Request $request) {
 
         $selectedYear = (int) $request->input('summaryYearSelect', Carbon::now()->year);
@@ -111,6 +119,8 @@ class DashboardController extends Controller
         $incomingExpenseController = new IncomingExpenseController();
 
         $savingsController = new SavingController();
+
+        $deadlinesController = new DeadlineController();
 
         $usrExpPrimaryCategoryAnnuallyPercLists = $expenseController->usrExpPrimaryCategoryAnnuallyPercLists($selectedYear);
         $usrExpSecondaryCategoryAnnuallyPercLists = $expenseController->usrExpSecondaryCategoryAnnuallyPercLists($selectedYear);
@@ -127,6 +137,7 @@ class DashboardController extends Controller
         $creditDebitController = new CreditDebitController();
         $userCreditDebitOnYear = $creditDebitController->userCreditDebitOnYear($selectedYear);
     
+        $userDeadlinesSummary = $deadlinesController->userDeadlinesSummary();
 
         return view('pages.summary')->with([
             'usrExpPrimaryCategoryAnnuallyPercLists'    =>  $usrExpPrimaryCategoryAnnuallyPercLists,
@@ -138,6 +149,7 @@ class DashboardController extends Controller
             'userCreditDebitOnYear'                     =>  $userCreditDebitOnYear,
             'usrSavMonthSummary'                        =>  $usrSavMonthSummary,
             'usrRatioMonthSummary'                      =>  $usrRatioMonthSummary,
+            'userDeadlinesSummary'                      =>  $userDeadlinesSummary,
         ]);
 
     }

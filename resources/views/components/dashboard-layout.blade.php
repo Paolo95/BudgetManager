@@ -119,6 +119,31 @@
                     </ul>
                 </li>
 
+                <li class="menu-item ">
+                    <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/categories/*') ? 'active' : '' }}">
+                        <div class="flex w-auto sidebar-navbar-div">
+                            <div class="w-7">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <div>
+                                <span>Gestione Categorie</span>
+                            </div>
+                        </div>
+                    </a>
+                    <ul class="submenu hidden">
+                        <li>
+                            <a href="/dashboard/categories/new_category" class="block py-2 px-4 {{ request()->is('dashboard/categories/new_category') ? 'active' : '' }}">
+                                Inserisci Categorie
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/dashboard/categories/edit_category" class="block py-2 px-4 {{ request()->is('dashboard/categories/edit_category') ? 'active' : '' }}">
+                                Modifica Categorie
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 
                 <li class="menu-item ">
                     <a href="/dashboard/summary" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/summary') ? 'active' : '' }}">

@@ -20,8 +20,8 @@
 
             <label for="subtype">Sotto-categoria:</label>
             <select id="subtype" name="subtype" required disabled>
-                <option value="" disabled selected>Seleziona Sotto-categoria</option>               
-            </select>
+                <option value="" disabled selected>Seleziona Sotto-categoria</option>              
+            </select>          
     
             <label for="deadline_id">Scadenza:</label>
             <select id="deadline_id" name="deadline_id">

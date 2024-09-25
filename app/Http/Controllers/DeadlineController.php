@@ -22,6 +22,34 @@ class DeadlineController extends Controller
         return response()->json($userDeadlines, 200);
     }
 
+    public function userDeadlinesSummary()
+    {
+        $userDeadlines = Deadline::selectRaw('deadlines.date, deadlines.title, deadlines.amount, sum(deadlines.amount)-sum(expenses.amount) as remaining')
+                                    ->join('expenses', 'expenses.deadline_id', '=', 'deadlines.id' )
+                                    ->where('deadlines.user_id', auth()->id())
+                                    ->groupby('deadlines.id', 'deadlines.date', 'deadlines.title', 'deadlines.amount')
+                                    ->orderBy('deadlines.amount', 'desc')
+                                    ->get();
+        
+        
+        if ($userDeadlines->isEmpty()) {
+            return response()->json(['message' => 'No deadlines found for this user.'], 200);
+        }
+
+        $result = [];
+
+        foreach ($userDeadlines as $item) {
+            $result[] = [
+                'date' => $item->date,
+                'title' => $item->title,
+                'amount' => $item->amount,
+                'remaining' => $item->remaining,
+            ];
+        }
+
+        return $result;
+    }
+
     public function newDeadline(Request $request)
     {
       

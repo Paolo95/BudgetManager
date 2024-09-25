@@ -60,6 +60,20 @@ Route::middleware(['web'])->group (function () {
     Route::get('/creditDebits/loadCreditDebitData/{creditDebitID}',  [CreditDebitController::class, 'loadCreditDebitData']);
     Route::post('/creditDebits/editCreditDebit',                     [CreditDebitController::class, 'editCreditDebit']);
     Route::post('/creditDebits/deleteCreditDebit/{creditDebitID}',   [CreditDebitController::class, 'deleteCreditDebit']);
+
+    Route::post('/categories/newExpenseSubCategory',                 [ExpenseCategoryController::class, 'newExpenseSubCategory']);
+    Route::post('/categories/newIncomingSubCategory',                [IncomingCategoryController::class, 'newIncomingSubCategory']);
+
+    Route::get('/categories/expenseCategoryList',                    [ExpenseCategoryController::class, 'expenseCategoryList']);
+    Route::get('/categories/incomingCategoryList',                   [IncomingCategoryController::class, 'incomingCategoryList']);
+    Route::get('/categories/expenseCategoryDetails/{categoryID}',    [ExpenseCategoryController::class, 'expenseCategoryDetails']);
+    Route::get('/categories/incomingCategoryDetails/{categoryID}',   [IncomingCategoryController::class, 'incomingCategoryDetails']);
+
+    Route::post('/categories/editExpenseCategory',                    [ExpenseCategoryController::class, 'editExpenseCategory']);
+    Route::post('/categories/editIncomingCategory',                   [IncomingCategoryController::class, 'editIncomingCategory']);
+
+    Route::post('/categories/deleteExpenseCategory/{categoryID}',     [ExpenseCategoryController::class, 'deleteExpenseCategory']);
+    Route::post('/categories/deleteIncomingCategory/{categoryID}',    [IncomingCategoryController::class, 'deleteIncomingCategory']);
 });
 
 

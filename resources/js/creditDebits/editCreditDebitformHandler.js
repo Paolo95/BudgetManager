@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }                
                 
                 const creditDebit = await response.json();
-
-                console.log(creditDebit);
            
                 // Populate the edit form fields with retrieved data
                 document.getElementById('date').value = creditDebit.date;     
