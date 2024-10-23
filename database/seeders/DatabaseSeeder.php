@@ -11,6 +11,7 @@ use App\Models\IncomingCategory;
 use App\Models\Expense;
 use App\Models\ExpenseCategory;
 use App\Models\Incoming;
+use App\Models\Target;
 use App\Models\UserTodo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -163,6 +164,11 @@ class DatabaseSeeder extends Seeder
             'title' => 'Bollo',            
             'description' => 'Soldi DK',
             'amount' => 20.45,
+        ]);
+
+        Target::create([
+            'user_id' => 1,
+            'amount' => 10000,
         ]);
         
     }

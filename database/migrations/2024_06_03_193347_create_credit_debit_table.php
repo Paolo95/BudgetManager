@@ -31,6 +31,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('credit_debit');
+        Schema::table('credit_debits', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+
+        Schema::dropIfExists('credit_debits');
     }
 };

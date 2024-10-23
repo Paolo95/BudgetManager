@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('deadlines', function (Blueprint $table) {
+        Schema::create('target', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->date('date');
-            $table->string('title');
-            $table->string('description')->nullable();
-            $table->float('amount');
-
+            $table->unsignedBigInteger('user_id'); 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->float('amount');
         });
     }
 
@@ -32,10 +28,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('deadlines', function (Blueprint $table) {
+        Schema::table('target', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });
 
-        Schema::dropIfExists('deadlines');
+        Schema::dropIfExists('target');
     }
 };

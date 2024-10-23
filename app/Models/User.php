@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Deadline::class);
     }
+
+    public function target(): HasMany
+    {
+        return $this->hasMany(Target::class);
+    }
 }

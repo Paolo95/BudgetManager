@@ -122,6 +122,11 @@ class DashboardController extends Controller
 
         $deadlinesController = new DeadlineController();
 
+        $creditDebitController = new CreditDebitController();
+
+        $targetController = new TargetController();
+
+
         $usrExpPrimaryCategoryAnnuallyPercLists = $expenseController->usrExpPrimaryCategoryAnnuallyPercLists($selectedYear);
         $usrExpSecondaryCategoryAnnuallyPercLists = $expenseController->usrExpSecondaryCategoryAnnuallyPercLists($selectedYear);
 
@@ -134,10 +139,14 @@ class DashboardController extends Controller
 
         $usrSavMonthSummary = $savingsController->usrSavMonthSummary($selectedYear);
 
-        $creditDebitController = new CreditDebitController();
+        
         $userCreditDebitOnYear = $creditDebitController->userCreditDebitOnYear($selectedYear);
     
         $userDeadlinesSummary = $deadlinesController->userDeadlinesSummary();
+
+        $userTarget = $targetController->getTarget();
+
+        $userSavings = $incomingExpenseController->usrSavings($selectedYear);
 
         return view('pages.summary')->with([
             'usrExpPrimaryCategoryAnnuallyPercLists'    =>  $usrExpPrimaryCategoryAnnuallyPercLists,
@@ -150,6 +159,8 @@ class DashboardController extends Controller
             'usrSavMonthSummary'                        =>  $usrSavMonthSummary,
             'usrRatioMonthSummary'                      =>  $usrRatioMonthSummary,
             'userDeadlinesSummary'                      =>  $userDeadlinesSummary,
+            'userTarget'                                =>  $userTarget,
+            'userSavings'                               =>  $userSavings
         ]);
 
     }

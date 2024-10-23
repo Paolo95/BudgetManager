@@ -7,6 +7,7 @@ use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomingCategoryController;
 use App\Http\Controllers\IncomingController;
+use App\Http\Controllers\TargetController;
 use App\Http\Controllers\UserToDoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,8 +75,6 @@ Route::middleware(['web'])->group (function () {
 
     Route::post('/categories/deleteExpenseCategory/{categoryID}',     [ExpenseCategoryController::class, 'deleteExpenseCategory']);
     Route::post('/categories/deleteIncomingCategory/{categoryID}',    [IncomingCategoryController::class, 'deleteIncomingCategory']);
+
+    Route::post('/target/editTarget',                                 [TargetController::class, 'updateTarget']);
 });
-
-
-
-

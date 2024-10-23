@@ -13,6 +13,60 @@
     overflow-y: scroll;
 }
 
+.dashboard-resumeTab-div .dashboard-target{
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+ }
+
+.dashboard-resumeTab-div .dashboard-target .target-div{
+   background-color: lightcyan;
+   border-radius: 10px;
+   height: 60px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 5px 0 5px 0;
+   gap: 5px;
+   padding: 5px;
+}
+
+.dashboard-resumeTab-div .dashboard-target .target-div p{
+   font-size: 20px;
+   font-weight: bold;
+}
+
+.dashboard-resumeTab-div .dashboard-target .target-div input{
+    fill: none;
+    background: transparent;
+    border: none;
+    text-align: center;
+    width: 75px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dashboard-resumeTab-div .dashboard-target .target-div button{
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: var(--main-blue);
+    margin: 0 15px 0 5px;
+    padding: 5px;
+    color: aliceblue;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-resumeTab-div .dashboard-target .target-div button:hover {
+    background-color: var(--main-bg-light-color);
+}
+
+
 .dashboard-content .dashboard-deadlines{
     display: flex;
     width: 100%;

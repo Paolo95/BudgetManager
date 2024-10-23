@@ -1,7 +1,7 @@
 <x-dashboard-layout>
 
     @php
-
+        
     @endphp
 
     <x-slot name="title">Riassunto annuale</x-slot>
@@ -20,6 +20,41 @@
                     </select>
                 </form>              
             </div>
+        </div>
+
+        <div class="dashboard-resumeTab-div">
+            <div class="dashboard-target">
+               
+                <form action="/api/target/editTarget" method="POST" class="target-form" id="target-form">
+                    @csrf
+
+                    <div class="target-div">
+                        <p>Obiettivo: </p>
+                        <label for="userTarget"></label> 
+                        <input 
+                            required
+                            name="userTarget"
+                            type="number"
+                            step=10
+                            value={{$userTarget}}>
+                        <p>€</p>
+
+                        <button type="submit">Modifica</button>
+                    </div>
+                </form>
+
+                    <div class="target-div">
+                        <p>Risparmiato: {{number_format($userSavings, 2, ",",".")}}</p>
+                        <p>€</p>
+                    </div>
+
+                    <div class="target-div">
+                        <p>Rimanente: {{number_format($userTarget - $userSavings, 2, ",",".")}} <p>€</p> <p>({{number_format((($userSavings) / $userTarget) * 100, 2, ",",".")}} %)</p>
+                    </div>
+                
+            </div>
+
+            
         </div>
 
         <div class="dashboard-resumeTab-div">

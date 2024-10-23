@@ -6,6 +6,5 @@ document.addEventListener('DOMContentLoaded', function() {
         selectElement.addEventListener('change', function() {
             this.form.submit();
         });
-
-    }
+    }   
 });

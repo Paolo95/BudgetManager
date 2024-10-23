@@ -180,6 +180,24 @@ class IncomingExpenseController extends Controller
 
         return $result;
     }
+
+    public function usrSavings()
+    {
+
+                
+        $userExpenses = Expense::selectRaw('SUM(amount) as total_amount')
+                                    ->where('user_id', auth()->id())
+                                    ->first();
+        
+        $userIncomings = Incoming::selectRaw('SUM(amount) as total_amount')
+                                    ->where('user_id', auth()->id())
+                                    ->first();
+
+       
+        $usrSavings = $userIncomings->total_amount - $userExpenses->total_amount;
+
+        return $usrSavings;
+    }
     
 
 }
