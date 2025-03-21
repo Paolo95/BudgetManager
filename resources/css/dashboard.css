@@ -27,6 +27,14 @@
     width: 100%;
 }
 
+.dashboard-header #dashMonthSelect,
+.dashboard-header #dashYearSelect
+{
+    height: 40px;
+    border-radius: 5px;
+}
+
+
 .dashboard-header form{
     display: flex;
     gap: 20px;
@@ -460,6 +468,17 @@
         font-size: 15px;
     }
 
+    .dashboard-header{
+        flex-direction: column;
+    }
+
+    .dashboard-header #dashMonthSelect,
+    .dashboard-header #dashYearSelect
+    {
+        height: 40px;
+        border-radius: 5px;
+    }
+
     .dashboard-header form{
         display: flex;
         align-items: center;
@@ -538,5 +557,16 @@
 
     .new-button::before, .remove-button::before {
         right: 50px;
+    }
+
+    .new-button::before,
+    .edit-button::before,
+    .remove-button::before {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #yearSummaryBtn{
+        display: none;
     }
 }

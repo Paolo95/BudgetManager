@@ -113,3 +113,13 @@
     margin-top: 10px;
     border-bottom: 1px solid black;
 }
+
+/* Miglioramenti generali */
+@media (max-width: 1300px) {
+    
+    .dashboard-target{
+        display: flex;
+        flex-direction: column;
+    }
+
+}

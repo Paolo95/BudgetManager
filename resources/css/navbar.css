@@ -5,3 +5,17 @@
     position: sticky;
     background-color: white;
 }
+
+/* Miglioramenti generali */
+@media (max-width: 1300px) {
+    
+    .navigation-bar li{
+        text-align: center;
+        margin: auto 0;
+    }
+
+    .navigation-bar .userDash{
+        display: none;
+    }
+    
+}

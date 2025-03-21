@@ -31,7 +31,7 @@
                         </select>
                         <button id="dashSubmitButton">Cerca</button>
                     </form>
-                    <a href="/dashboard/summary">
+                    <a href="/dashboard/summary" id="yearSummaryBtn">
                         <button>Riepilogo anno</button>
                     </a>
                 

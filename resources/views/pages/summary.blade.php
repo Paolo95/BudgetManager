@@ -43,14 +43,14 @@
                     </div>
                 </form>
 
-                    <div class="target-div">
-                        <p>Risparmiato: {{number_format($userSavings, 2, ",",".")}}</p>
-                        <p>€</p>
-                    </div>
+                <div class="target-div">
+                    <p>Risparmiato: {{number_format($userSavings, 2, ",",".")}}</p>
+                    <p>€</p>
+                </div>
 
-                    <div class="target-div">
-                        <p>Rimanente: {{number_format($userTarget - $userSavings, 2, ",",".")}} <p>€</p> <p>({{number_format((($userSavings) / $userTarget) * 100, 2, ",",".")}} %)</p>
-                    </div>
+                <div class="target-div">
+                    <p>Rimanente: {{number_format($userTarget - $userSavings, 2, ",",".")}} <p>€</p> <p>({{number_format((($userSavings) / $userTarget) * 100, 2, ",",".")}} %)</p>
+                </div>
                 
             </div>
 

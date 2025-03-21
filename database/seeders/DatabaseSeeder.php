@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
         ]);  
         
         Incoming::create([
-            'date' => '2024-09-12',
+            'date' => '2025-03-12',
             'incoming_category_id' => 1,
             'user_id' => 1,
             'title' => 'Stipendio SELDA',
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2024-09-15',
+            'date' => '2025-03-15',
             'expense_category_id' => 1,
             'user_id' => 1,
             'title'=> 'Bollo',
@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2024-09-05',
+            'date' => '2025-03-05',
             'expense_category_id' => 1,
             'user_id' => 1,
             'title'=> 'Bollo',
@@ -79,7 +79,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2024-08-25',
+            'date' => '2025-03-25',
             'expense_category_id' => 1,
             'user_id' => 1,
             'title'=> 'Bollo',
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2023-07-16',
+            'date' => '2024-03-16',
             'expense_category_id' => 2,
             'user_id' => 1,
             'title'=> 'Benzina',
@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Expense::create([
-            'date' => '2024-09-09',
+            'date' => '2025-03-09',
             'expense_category_id' => 3,
             'user_id' => 1,
             'title'=> 'Cena Sushi',
