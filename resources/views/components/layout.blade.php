@@ -86,7 +86,7 @@
   </div>
   
   <footer class="flex items-center font-bold bg-laravel text-white h-20 mt-16 opacity-90 md:justify-center">
-    <p class="ml-2">Copyright &copy; 2024, Tutti i diritti riservati</p>
+    <p class="ml-2">Copyright &copy; 2025, Tutti i diritti riservati</p>
   </footer>
 
   <x-flash-message />
