@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\SummaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +50,7 @@ Route::get('/dashboard/categories/new_category', [DashboardController::class, 'n
 
 Route::get('/dashboard/categories/edit_category', [DashboardController::class, 'editCategory'])->middleware('auth');
 
-Route::get('/dashboard/summary', [DashboardController::class, 'summary'])->middleware('auth');
+Route::get('/dashboard/summary', [SummaryController::class, 'summary'])->middleware('auth');
 
 Route::redirect('/dashboard', '/dashboard/home');
 

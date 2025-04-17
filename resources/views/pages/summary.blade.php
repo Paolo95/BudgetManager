@@ -279,7 +279,7 @@
                 <div style="font-weight: bold">Andamento rapporto Uscite/Entrate</div>
 
                 <div class="lineChartSummary-div" id="expIncRatioLine">
-                    <canvas id="lineChartExpensesSummaryRatio" style="width: 100%;"></canvas>
+                    <canvas id="lineChartExpensesSummaryRatio"></canvas>
                 </div>
 
                 <script>
