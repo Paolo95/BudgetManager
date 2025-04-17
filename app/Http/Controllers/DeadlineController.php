@@ -24,10 +24,10 @@ class DeadlineController extends Controller
 
     public function userDeadlinesSummary()
     {
-        $userDeadlines = Deadline::selectRaw('deadlines.date, deadlines.title, deadlines.amount, sum(deadlines.amount)-sum(expenses.amount) as remaining')
-                                    ->join('expenses', 'expenses.deadline_id', '=', 'deadlines.id' )
+        $userDeadlines = Deadline::selectRaw('deadlines.date, deadlines.title, deadlines.amount, SUM(deadlines.amount) - IFNULL(SUM(expenses.amount), 0) as remaining')
+                                    ->leftJoin('expenses', 'expenses.deadline_id', '=', 'deadlines.id')
                                     ->where('deadlines.user_id', auth()->id())
-                                    ->groupby('deadlines.id', 'deadlines.date', 'deadlines.title', 'deadlines.amount')
+                                    ->groupBy('deadlines.id', 'deadlines.date', 'deadlines.title', 'deadlines.amount')
                                     ->orderBy('deadlines.amount', 'desc')
                                     ->get();
         
