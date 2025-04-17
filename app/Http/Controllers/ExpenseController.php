@@ -437,7 +437,11 @@ class ExpenseController extends Controller
         $expense->date = $validatedData['date'];
         $expense->expense_category_id = $expenseCategoryID;
         $expense->user_id = auth()->id();
-        $expense->deadline_id = $validatedData['deadline_id'];
+
+        if(isset($validatedData['deadline_id'])){
+            $expense->deadline_id = $validatedData['deadline_id'];
+        }
+
         $expense->title = $validatedData['title'];
         $expense->description = $validatedData['description'];
         $expense->amount = $validatedData['amount'];
@@ -533,7 +537,7 @@ class ExpenseController extends Controller
         $expense->expense_category_id = $categoryID->id;
   
         if(isset($validatedData['deadline_id'])){
-            $expense->deadline_id   = $validatedData['deadline_id'];
+            $expense->deadline_id = $validatedData['deadline_id'];
         }
 
         $expense->title        = $validatedData['title'];
