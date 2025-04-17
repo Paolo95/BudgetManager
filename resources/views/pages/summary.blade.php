@@ -25,7 +25,7 @@
         <div class="dashboard-resumeTab-div">
             <div class="dashboard-target">
                
-                <form action="/api/target/editTarget" method="POST" class="target-form" id="target-form">
+                <form action="/api/target/editTarget" method="POST" class="target-form target-div" id="target-form">
                     @csrf
 
                     <div class="target-div">
@@ -152,7 +152,7 @@
                 <div style="font-weight: bold">Andamento Spese, Guadagni e Risparmi nell'anno</div>
 
                 <div class="lineChartSummary-div">
-                    <canvas id="lineChartExpensesSummary" style="width: 100%;"></canvas>
+                    <canvas id="lineChartExpensesSummary"></canvas>
                 </div>
 
                 <script>
@@ -202,18 +202,9 @@
                                     beginAtZero: true
                                 }
                             },
-                            plugins: {
-                                datalabels: {
-                                    display: true,  
-                                    color: 'black', 
-                                    align: 'top',  
-                                    formatter: (value, context) => {
-                                        return value.toFixed(2); 
-                                    }
-                                }
-                            }
+                           
                         },
-                        plugins: [ChartDataLabels]
+      
                     });
                 </script>
             </div>
@@ -316,18 +307,8 @@
                                     beginAtZero: true
                                 }
                             },
-                            plugins: {
-                                datalabels: {
-                                    display: true,  
-                                    color: 'black', 
-                                    align: 'top',  
-                                    formatter: (value, context) => {
-                                        return value.toFixed(2); 
-                                    }
-                                }
-                            }
+                          
                         },
-                        plugins: [ChartDataLabels]
                     });
                 </script>
             </div>
