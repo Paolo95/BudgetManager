@@ -161,3 +161,37 @@
 .form-list-table .delete-form-button:hover {
     background-color: var(--light-red);
 }
+
+@media (max-width: 1300px) {
+    .search-form {
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .form-table-div{
+        overflow-x: scroll;
+    }
+    
+    .table-action{
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        height: 100%;
+    }
+
+    .form-list-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+    }
+
+}

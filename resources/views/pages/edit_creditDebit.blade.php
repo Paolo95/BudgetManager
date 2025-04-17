@@ -31,32 +31,33 @@
 
          <!-- Expense List Table -->
         @if(isset($creditDebits) && count($creditDebits) > 0)
-
-            <table class="form-list-table">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Tipo</th>
-                        <th>Descrizione</th>
-                        <th>Totale</th>
-                        <th>Azioni</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($creditDebits as $exp)
-                    <tr>
-                        <td>{{ \Carbon\Carbon::parse($exp->date)->format('d/m/Y') }}</td>
-                        <td>{{ $exp->type }}</td>
-                        <td>{{ $exp->description }}</td>
-                        <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
-                        <td>
-                            <a href="" class="edit-creditDebit" data-creditDebit-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-creditDebit delete-form-button" data-creditDebit-id="{{ $exp->id }}">Elimina</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="form-table-div">
+                <table class="form-list-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Descrizione</th>
+                            <th>Totale</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($creditDebits as $exp)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($exp->date)->format('d/m/Y') }}</td>
+                            <td>{{ $exp->type }}</td>
+                            <td>{{ $exp->description }}</td>
+                            <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
+                            <td class="table-action">
+                                <a href="" class="edit-creditDebit" data-creditDebit-id="{{ $exp->id }}">Modifica</a>
+                                <a href="" class="delete-creditDebit delete-form-button" data-creditDebit-id="{{ $exp->id }}">Elimina</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         @elseif(isset($creditDebits) && count($creditDebits) === 0)
             <p>Nessun credito/debito trovato nel periodo selezionato.</p>
         @endif

@@ -27,30 +27,31 @@
         </form>
         
         @if(isset($deadlines) && count($deadlines) > 0)
-
-            <table class="form-list-table">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Titolo</th>
-                        <th>Totale</th>
-                        <th>Azioni</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($deadlines as $exp)
-                    <tr>
-                        <td>{{ \Carbon\Carbon::parse($exp->date)->format('d/m/Y') }}</td>
-                        <td>{{ $exp->title }}</td>
-                        <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
-                        <td>
-                            <a href="" class="edit-deadline" data-deadline-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-deadline delete-form-button" data-deadline-id="{{ $exp->id }}">Elimina</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="form-table-div">
+                <table class="form-list-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Titolo</th>
+                            <th>Totale</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($deadlines as $exp)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($exp->date)->format('d/m/Y') }}</td>
+                            <td>{{ $exp->title }}</td>
+                            <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
+                            <td class="table-action">
+                                <a href="" class="edit-deadline" data-deadline-id="{{ $exp->id }}">Modifica</a>
+                                <a href="" class="delete-deadline delete-form-button" data-deadline-id="{{ $exp->id }}">Elimina</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         @elseif(isset($deadlines) && count($deadlines) === 0)
             <p>Nessuna scadenza trovata nel periodo selezionato.</p>
         @endif

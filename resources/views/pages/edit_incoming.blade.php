@@ -26,34 +26,35 @@
         </form>
         
         @if(isset($incomings) && count($incomings) > 0)
-
-            <table class="form-list-table">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Categoria</th>
-                        <th>Sotto-Categoria</th>
-                        <th>Titolo</th>
-                        <th>Totale</th>
-                        <th>Azioni</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($incomings as $exp)
-                    <tr>
-                        <td>{{ \Carbon\Carbon::parse($exp->date)->format('d/m/Y') }}</td>
-                        <td>{{ $exp->type }}</td>
-                        <td>{{ $exp->subtype }}</td>
-                        <td>{{ $exp->title }}</td>
-                        <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
-                        <td>
-                            <a href="" class="edit-incoming" data-incoming-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-incoming delete-form-button" data-incoming-id="{{ $exp->id }}">Elimina</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="form-table-div">
+                <table class="form-list-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Categoria</th>
+                            <th>Sotto-Categoria</th>
+                            <th>Titolo</th>
+                            <th>Totale</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($incomings as $exp)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($exp->date)->format('d/m/Y') }}</td>
+                            <td>{{ $exp->type }}</td>
+                            <td>{{ $exp->subtype }}</td>
+                            <td>{{ $exp->title }}</td>
+                            <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
+                            <td class="table-action">
+                                <a href="" class="edit-incoming" data-incoming-id="{{ $exp->id }}">Modifica</a>
+                                <a href="" class="delete-incoming delete-form-button" data-incoming-id="{{ $exp->id }}">Elimina</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         @elseif(isset($incomings) && count($incomings) === 0)
             <p>Nessuna entrata trovata nel periodo selezionato.</p>
         @endif

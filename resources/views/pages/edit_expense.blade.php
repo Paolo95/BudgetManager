@@ -4,8 +4,6 @@
         
         $expenses            = session('expenses', []);
         $startDate           = session('start_date', null);
-      
-       
     @endphp
 
     <x-slot name="title">Modifica Spesa</x-slot>
@@ -13,7 +11,6 @@
     <div class="edit_forms-div">
         <h1>Modifica Spesa</h1>
 
-        <!-- Search Form by Date Range -->
         <form action="/api/expenses/searchExpense" method="GET" class="search-form" id="search-form">
             @csrf
             <label for="start_date">Data inizio:</label>
@@ -29,46 +26,44 @@
         </form>
         
 
-         <!-- Expense List Table -->
         @if(isset($expenses) && count($expenses) > 0)
-
-            <table class="form-list-table">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Categoria</th>
-                        <th>Sotto-Categoria</th>
-                        <th>Titolo</th>
-                        <th>Totale</th>
-                        <th>Azioni</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($expenses as $exp)
-                    <tr>
-                        <td>{{ \Carbon\Carbon::parse($exp->date)->format('d/m/Y') }}</td>
-                        <td>{{ $exp->type }}</td>
-                        <td>{{ $exp->subtype }}</td>
-                        <td>{{ $exp->title }}</td>
-                        <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
-                        <td>
-                            <a href="" class="edit-expense" data-expense-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-expense delete-form-button" data-expense-id="{{ $exp->id }}">Elimina</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="form-table-div">
+                <table class="form-list-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Categoria</th>
+                            <th>Sotto-Categoria</th>
+                            <th>Titolo</th>
+                            <th>Totale</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($expenses as $exp)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($exp->date)->format('d/m/Y') }}</td>
+                            <td>{{ $exp->type }}</td>
+                            <td>{{ $exp->subtype }}</td>
+                            <td>{{ $exp->title }}</td>
+                            <td>{{ number_format($exp->amount, 2, ",", ".") }} €</td>
+                            <td class="table-action">
+                                <a href="" class="edit-expense" data-expense-id="{{ $exp->id }}">Modifica</a>
+                                <a href="" class="delete-expense delete-form-button" data-expense-id="{{ $exp->id }}">Elimina</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         @elseif(isset($expenses) && count($expenses) === 0)
             <p>Nessuna spesa trovata nel periodo selezionato.</p>
         @endif
 
-        <!-- Expense Edit Form -->
         <form action="/api/expenses/editExpense" method="POST" class="edit-form" id="edit-form">
             <div id="edit-form-div" style="display: none;">
                 
                 @csrf
-                <!-- Input fields for editing a specific expense -->
 
                 <input type="number" id="id" name="id" value="" hidden>
 

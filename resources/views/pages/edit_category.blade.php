@@ -27,57 +27,58 @@
 
         </form>
         
-
-         <!-- Expense List Table -->
         @if( isset($expenseCategories) && count($expenseCategories) > 0)
-
-            <table class="form-list-table">
-                <thead>
-                    <tr>
-                        <th>Categoria</th>
-                        <th>Sotto-Categoria</th>
-                        <th>Descrizione</th>
-                        <th>Azioni</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($expenseCategories as $exp)
-                    <tr>
-                        <td>{{ $exp->type }}</td>
-                        <td>{{ $exp->subtype }}</td>
-                        <td>{{ $exp->description}}</td>
-                        <td>
-                            <a href="" class="edit-category" data-category-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-category delete-form-button" data-category-id="{{ $exp->id }}">Elimina</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="form-table-div">
+                <table class="form-list-table">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Sotto-Categoria</th>
+                            <th>Descrizione</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($expenseCategories as $exp)
+                        <tr>
+                            <td>{{ $exp->type }}</td>
+                            <td>{{ $exp->subtype }}</td>
+                            <td>{{ $exp->description}}</td>
+                            <td class="table-action">
+                                <a href="" class="edit-category" data-category-id="{{ $exp->id }}">Modifica</a>
+                                <a href="" class="delete-category delete-form-button" data-category-id="{{ $exp->id }}">Elimina</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         @elseif( isset($incomingCategories) && count($incomingCategories) > 0)
-            <table class="form-list-table">
-                <thead>
-                    <tr>
-                        <th>Categoria</th>
-                        <th>Sotto-Categoria</th>
-                        <th>Descrizione</th>
-                        <th>Azioni</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($incomingCategories as $exp)
-                    <tr>
-                        <td>{{ $exp->type }}</td>
-                        <td>{{ $exp->subtype }}</td>
-                        <td>{{ $exp->description}}</td>
-                        <td>
-                            <a href="" class="edit-category" data-category-id="{{ $exp->id }}">Modifica</a>
-                            <a href="" class="delete-category delete-form-button" data-category-id="{{ $exp->id }}">Elimina</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="form-table-div">
+                <table class="form-list-table">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Sotto-Categoria</th>
+                            <th>Descrizione</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($incomingCategories as $exp)
+                        <tr>
+                            <td>{{ $exp->type }}</td>
+                            <td>{{ $exp->subtype }}</td>
+                            <td>{{ $exp->description}}</td>
+                            <td class="table-action">
+                                <a href="" class="edit-category" data-category-id="{{ $exp->id }}">Modifica</a>
+                                <a href="" class="delete-category delete-form-button" data-category-id="{{ $exp->id }}">Elimina</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         @endif
 
         <!-- Expense Edit Form -->
