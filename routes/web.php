@@ -28,6 +28,9 @@ Route::post('/users',                                       [UserController::cla
 
 Route::post('/users/authenticate',                          [UserController::class, 'authenticate']);
 
+Route::get('/dashboard/change_password',                    [UserController::class, 'showChangePasswordForm'])->middleware('auth');
+Route::post('/change_password',                             [UserController::class, 'changePassword'])->middleware('auth');
+
 Route::get('/dashboard/home',                               [DashboardController::class, 'dashboard'])->middleware('auth');
 
 Route::get('/dashboard/expenses/new_expense',               [DashboardController::class, 'insertExpense'])->middleware('auth');

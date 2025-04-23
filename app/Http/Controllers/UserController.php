@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -60,6 +61,42 @@ class UserController extends Controller
         }
 
         return back()->withErrors(['email' => 'Credenziali non valide'])->onlyInput('email');
+    }
+    
+    // Mostra il form
+    public function showChangePasswordForm() {
+        return view('users.change_password');
+    }
+
+    // Esegue il cambio password
+    public function changePassword(Request $request)
+    {
+        // Validazione dei campi
+        $request->validate([
+            'current_password' => ['required'],
+            'new_password' => ['required', 'min:6', 'confirmed'],
+        ]);
+
+        // Prendi l'utente autenticato
+        $user = User::find(auth()->id());
+
+        // Verifica la password corrente
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'La password attuale non è corretta.']);
+        }
+
+        // Verifica se la nuova password è uguale alla vecchia
+        if ($request->new_password === $request->current_password) {
+            return back()->withErrors(['new_password' => 'La nuova password non può essere uguale a quella precedente.']);
+        }
+
+        // Hash della nuova password
+        $user->password = bcrypt($request->new_password);
+
+        // Salva l'utente con la nuova password
+        $user->save();
+
+        return redirect('/dashboard/home')->with('message', 'Password cambiata con successo!');
     }
 
 }

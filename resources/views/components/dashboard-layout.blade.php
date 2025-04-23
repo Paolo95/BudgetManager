@@ -183,6 +183,20 @@
                     </a>
                    
                 </li>
+
+                <li class="menu-item ">
+                    <a href="/dashboard/change_password" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/change_password') ? 'active' : '' }}">
+                        <div class="flex w-auto sidebar-navbar-div">
+                            <div class="w-7">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <div>
+                                <span>Cambio Password</span>
+                            </div>
+                        </div>
+                    </a>
+                   
+                </li>
                 
             </ul>
         </aside>
