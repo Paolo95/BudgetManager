@@ -50,6 +50,10 @@ Route::get('/dashboard/categories/new_category',            [DashboardController
 
 Route::get('/dashboard/categories/edit_category',           [DashboardController::class, 'editCategory'])->middleware('auth');
 
+Route::get('/dashboard/todos/new_todo',                      [DashboardController::class, 'newToDo'])->middleware('auth');
+
+Route::get('/dashboard/todos/edit_todo',                     [DashboardController::class, 'editToDo'])->middleware('auth');
+
 Route::get('/dashboard/summary',                            [SummaryController::class, 'summary'])->middleware('auth');
 
 Route::redirect('/dashboard', '/dashboard/home');

@@ -108,6 +108,14 @@ class DashboardController extends Controller
         return view('pages.edit_category');
     }
 
+    public function newToDo() {
+        return view('pages.new_todo');
+    }
+
+    public function editToDo() {
+        return view('pages.edit_todo');
+    }
+
     
 
 }

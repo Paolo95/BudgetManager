@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    
     // Event listener for checkbox change
     $('.todo-checkbox').change(function(event) {
         event.preventDefault(); // Prevent the default action
@@ -9,7 +10,7 @@ $(document).ready(function() {
         
         // AJAX request to update the to-do item status
         $.ajax({
-            url: '/api/updateToDo/' + todoId,
+            url: '/api/todos/updateToDo/' + todoId,
             type: 'POST',
             data: {
                 id: todoId,

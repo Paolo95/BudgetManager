@@ -368,6 +368,7 @@
         
     @push('scripts')
         @vite('resources/js/dashboard/dashSelect.js')
+        @vite('resources/js/dashboard/toDoHandler.js')
     @endpush
 
 </x-dashboard-layout>

@@ -30,7 +30,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['web'])->group (function () {
     
-    Route::post('/updateToDo/{id}',                                 [UserToDoController::class, 'updateToDo']);
+    Route::post('/todos/newToDo',                                      [UserToDoController::class, 'newToDo']);
+    Route::get('/todos/searchToDo',                                    [UserToDoController::class, 'searchToDoByDateRange']);
+    Route::get('/todos/loadToDoData/{todoID}',                         [UserToDoController::class, 'loadToDoData']);
+    Route::post('/todos/editToDo',                                     [UserToDoController::class, 'editToDo']);
+    Route::post('/todos/updateToDo/{id}',                              [UserToDoController::class, 'updateToDo']);
+    Route::post('/todos/deleteToDo/{id}',                              [UserToDoController::class, 'deleteToDo']);
 
     Route::get('/expenses/getSubCategories/{categoria}',            [ExpenseCategoryController::class, 'expensesSubTypeListByCategory']);
     

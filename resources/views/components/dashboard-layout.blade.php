@@ -144,6 +144,31 @@
                     </ul>
                 </li>
 
+                <li class="menu-item ">
+                    <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/todos/*') ? 'active' : '' }}">
+                        <div class="flex w-auto sidebar-navbar-div">
+                            <div class="w-7">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <div>
+                                <span>Gestione Spese da Fare</span>
+                            </div>
+                        </div>
+                    </a>
+                    <ul class="submenu hidden">
+                        <li>
+                            <a href="/dashboard/todos/new_todo" class="block py-2 px-4 {{ request()->is('dashboard/todos/new_todo') ? 'active' : '' }}">
+                                Inserisci Spesa da Fare
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/dashboard/todos/edit_todo" class="block py-2 px-4 {{ request()->is('dashboard/todos/edit_todo') ? 'active' : '' }}">
+                                Modifica Spesa da Fare
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 
                 <li class="menu-item ">
                     <a href="/dashboard/summary" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/summary') ? 'active' : '' }}">
