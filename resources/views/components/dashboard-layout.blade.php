@@ -148,7 +148,7 @@
                     <a href="javascript:void(0);" class="block py-2 px-4 main-menu-link {{ request()->is('dashboard/todos/*') ? 'active' : '' }}">
                         <div class="flex w-auto sidebar-navbar-div">
                             <div class="w-7">
-                                <i class="fa-solid fa-layer-group"></i>
+                                <i class="fas fa-clipboard-list"></i>
                             </div>
                             <div>
                                 <span>Gestione Spese da Fare</span>
